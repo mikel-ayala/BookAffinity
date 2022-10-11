@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
     <title>LIBURUAK</title>
 </head>
 
 <body>
+    <header><?php include './html/header.html'; ?></header>
     <div class="listaLibros">
         <div class="filtro">
             <form class="buscarAutor">
@@ -66,7 +67,7 @@
                 <label>Libro</label><br>
             </form>
         </div>
-        <div class="libros">1
+        <div class="libros">
             <table>
                 <?php
                 include 'conexion.php';
@@ -85,7 +86,6 @@
                         <div class="container">
                             <h4><b><?= $valor["titulua"]?></b></h4>
                             <p><?= $valor["autorea"] ?></p>
-                            <p><?= $valor["kodea"] ?></p>
                         </div>
                     </div>
                 </td>
