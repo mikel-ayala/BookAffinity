@@ -85,6 +85,7 @@
                         <div class="container">
                             <h4><b><?= $valor["titulua"]?></b></h4>
                             <p><?= $valor["autorea"] ?></p>
+                            <p><?= $valor["kodea"] ?></p>
                         </div>
                     </div>
                 </td>
