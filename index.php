@@ -84,7 +84,7 @@
                         <img src="./img/<?= $valor["portada"] ?>">
                         <div class="container">
                             <h4><b><?= $valor["titulua"]?></b></h4>
-                            <p>Architect & Engineer</p>
+                            <p><?= $valor["autorea"] ?></p>
                         </div>
                     </div>
                 </td>
