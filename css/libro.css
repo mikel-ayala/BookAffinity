@@ -1,0 +1,212 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+button {
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #3386FF;
+    color: white;
+    border: 0;
+    border-radius: 2%;
+    cursor: pointer;
+}
+
+#containerSnap {
+    width: 100%;
+    height: 92vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#containerSnap section {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    background-color: rgb(235, 235, 235);
+}
+
+#containerFicha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#ficha  {
+    display: flex;
+    width: 100%;
+    height: 90%;
+    margin-top: 1%;
+    align-items: center;
+}
+
+#ficha img {
+    width: 30%;
+    height: 90%;
+    margin-left: 2%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+#libro {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    width: 68%;
+    height: 90%;
+}
+
+#libro * {
+    width: 85%;
+}
+
+#titulo {
+    display: flex;
+    align-items: center;
+}
+
+#titulo h1 {
+    font-size: 3em;
+    width: fit-content;
+}
+
+#titulo #estrellas {
+    display: flex;
+    width: fit-content;
+    margin-left: 2%;
+}
+
+.navegar {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+    cursor: pointer;
+	outline: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 6%;
+}
+
+#containerReviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#reviews {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 92%;
+    height: 92%;
+    margin: 4%;
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 25%;
+}
+
+#header h1 {
+    font-size: 3em;
+    width: fit-content;
+}
+
+#score {
+    display: flex;
+    align-items: center;
+}
+
+#score h1 {
+    color: orange;
+}
+
+#score #estrellas {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 6%;
+    margin-left: 1%;
+}
+
+#score p {
+    color: gray;
+    margin-left: 2%;
+}
+
+#newReview {
+    display: flex;
+    justify-content: flex-end;
+    width: 10%;
+    height: 25%;
+}
+
+#gehitu {
+    width: 100%;
+    height: 25%;
+}
+
+#gehitu b {
+    margin-left: 1%;
+    cursor: pointer;
+}
+
+#list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 75%;
+    overflow-y: scroll;
+}
+
+.review {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    min-height: 35%;
+    margin-bottom: 2.5%;
+    padding: 1%;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.review .perfil {
+    width: 5%;
+}
+
+.review .info {
+    width: 90%;
+    height: 100%;
+}
+
+.info p {
+    width: 100%;
+    height: 40%;
+}
+
+.info * {
+    padding-top: 0.3%;
+    padding-bottom: 0.3%;
+}
+
+.info .erantzuna {
+    height: 20%;
+    align-self: flex-end;
+    float: right;
+    bottom: 1%;
+}
