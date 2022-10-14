@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="./js/index.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
     <title>LIBURUAK</title>
 </head>
-
 <body>
-    <header><?php include './html/header.html'; ?></header>
+    <?php include './html/header.html'; ?>
     <div class="listaLibros">
         <div class="filtro">
             <form class="buscarAutor">
                 <label>Autorea:</label><br>
-                <input type="text" name="buscarAut" id="buscarAut">
+                <input type="text" oninput="buscarAut()">
             </form>
             <hr>
             <form class="buscarEstrellas">
@@ -74,6 +75,19 @@
                 $liburuak = $miPDO->prepare('SELECT * FROM liburuak');
                 $liburuak->execute();
 
+                $libros = [];
+                foreach($liburuak as $clave => $valor)
+                    array_push($libros, $valor["autorea"]);
+                ?>
+                
+                <script>
+                    var liburuak = [];
+                    liburuak = <?php echo json_encode($libros); ?>;
+                    
+                    console.log(liburuak);
+                </script>
+
+                <?php
                 $contLibros = 0;
                 foreach($liburuak as $clave => $valor){
                     $contLibros++;
