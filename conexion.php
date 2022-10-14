@@ -1,6 +1,6 @@
 <?php
     $hostDB = '127.0.0.1';
-    $nombreDB = 'db_liburutegia';
+    $nombreDB = 'cjl';
     $usuarioDB = 'root';
     $constrasenyaDB = '';
 

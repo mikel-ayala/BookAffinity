@@ -10,6 +10,27 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(235, 235, 235);
+}
+
+
+/* ::-webkit-scrollbar {
+    display: none;
+} */
+
+button {
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #3386FF;
+    color: white;
+    border: 0;
+    border-radius: 2%;
+    cursor: pointer;
+}
+
 .checked {
     color: orange;
 }

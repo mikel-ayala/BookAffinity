@@ -5,114 +5,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="./js/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <link rel="stylesheet" type="text/css" href="./css/header.css">
-    <title>LIBURUAK</title>
+    <link rel="stylesheet" type="text/css" href="css/generalStyles.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <title>Liburuak | JLCLUB</title>
 </head>
 <body>
     <?php include './html/header.html'; ?>
-    <div class="listaLibros">
-        <div class="filtro">
-            <form class="buscarAutor">
-                <label>Autorea:</label><br>
-                <input type="text" oninput="buscarAut()">
-            </form>
-            <hr>
-            <form class="buscarEstrellas">
-                <p class="clasificacion">
-                    <!--
-                    --><input id="radio1" type="radio" name="estrellas" value="5">
-                    <!--
-                    --><label for="radio1">★</label>
-                    <!--
-                    --><input id="radio2" type="radio" name="estrellas" value="4">
-                    <!--
-                    --><label for="radio2">★</label>
-                    <!--
-                    --><input id="radio3" type="radio" name="estrellas" value="3">
-                    <!--
-                    --><label for="radio3">★</label>
-                    <!--
-                    --><input id="radio4" type="radio" name="estrellas" value="2">
-                    <!--
-                    --><label for="radio4">★</label>
-                    <!--
-                    --><input id="radio5" type="radio" name="estrellas" value="1">
-                    <!--
-                    --><label for="radio5">★</label>
-                </p>
-            </form>
-            <hr>
-            <form class="buscarEdad">
-                <label>Adina:</label><br>
-                <input type="text" name="buscarEdadMin" id="buscarEdadMin">
-                <label>tik</label>
-                <input type="text" name="buscarEdadMax" id="buscarEdadMax">
-                <label>era</label>
-            </form>
-            <hr>
-            <form class="buscarGenero">
-                <label>Generoa:</label><br>
-                <input type="checkbox" name="buscarGen" id="buscarGen">
-                <label>Comedia</label><br>
-                <input type="checkbox" name="buscarGen" id="buscarGen">
-                <label>Accion</label><br>
-            </form>
-            <hr>
-            <form class="buscarFormato">
-                <label>Formatua:</label><br>
-                <input type="checkbox" name="buscarForm" id="buscarForm">
-                <label>Manga</label><br>
-                <input type="checkbox" name="buscarForm" id="buscarForm">
-                <label>Libro</label><br>
-            </form>
-        </div>
-        <div class="libros">
-            <table>
-                <?php
+    <div id="containerListaFiltro">
+        <aside id="filtroLibros">
+
+        </aside>
+        <section id="listaLibros">
+            <?php
                 include 'conexion.php';
-                $liburuak = $miPDO->prepare('SELECT * FROM liburuak');
-                $liburuak->execute();
+                $libros = $miPDO->prepare('SELECT * FROM libros WHERE `aprobado` = 1');
+                $libros->execute();
 
-                $libros = [];
-                foreach($liburuak as $clave => $valor)
-                    array_push($libros, $valor["autorea"]);
-                ?>
+                $listaL = $libros->fetchAll();
+            ?>
+
+            <script>
+
+                let libros = [];
+                libros = <?php echo json_encode($listaL); ?>;
+                let containerLibros = document.getElementById('listaLibros');
+                let htmlList = "";
+                let estrellas = "";
                 
-                <script>
-                    var liburuak = [];
-                    liburuak = <?php echo json_encode($libros); ?>;
-                    
-                    console.log(liburuak);
-                </script>
+                for (let i = 0; i < libros.length; i++) {
 
-                <?php
-                $contLibros = 0;
-                foreach($liburuak as $clave => $valor){
-                    $contLibros++;
-                    if($contLibros % 4 == 1)
-                        echo("<tr>");
-                ?>
-                <td>
-                    <div class="card">
-                        <img src="./img/<?= $valor["portada"] ?>">
-                        <div class="container">
-                            <h4><b><?= $valor["titulua"]?></b></h4>
-                            <p><?= $valor["autorea"] ?></p>
-                        </div>
-                    </div>
-                </td>
-                <?php
-                    if($contLibros % 4 == 0)
-                        echo("</tr>");
-                }
-                if($contLibros % 4 != 0)
-                        echo("</tr>");
-                ?>  
-            </table>
-        </div>
+                    switch (libros[i]["valoracion"]) {
+                        case 1:
+                            estrellas = '<span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>';
+                            break;
+                        case 2:
+                            estrellas = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>';
+                            break;
+                        case 3:
+                            estrellas = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>';
+                            break;
+                        case 4:
+                            estrellas = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>';
+                            break;
+                        case 5:
+                            estrellas = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>';
+                            break;
+                        default:
+                            estrellas = '<span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>';
+                            break;
+                    };
+
+                    htmlList += '<article class="libro">' +
+                        '<img src="' + libros[i]["foto"] + '" alt="">' +
+                        '<div class="infoLibro">' + 
+                            '<h2>' + libros[i]["titulo"] + '</h2>' +
+                            '<b>' + libros[i]["autor"] + '</b>' + 
+                            '<p>' + libros[i]["formato"].toUpperCase() + '</p>' +
+                            '<div class="estrellas">' 
+                                + estrellas +
+                                '<p>(' + libros[i]["numero_de_lectores"] + ')</p>' +
+                            '</div>' + 
+                        '</div>' +
+                    '</article>';
+                };
+
+                containerLibros.innerHTML = htmlList;
+
+            </script>
+        </section>
     </div>
+    <!-- <?php include('html/footer.html');?> -->
+    <script src="js/index.js"></script>
 </body>
 
 </html>
