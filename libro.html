@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Principito | JLCLUB</title>
-    <link rel="stylesheet" href="css/generalStyles.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/libro.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="./view/css/generalStyles.css">
+    <link rel="stylesheet" href="./view/css/header.css">
+    <link rel="stylesheet" href="./view/css/libro.css">
+    <link rel="stylesheet" href="./view/css/footer.css">
     <script src="https://kit.fontawesome.com/9d49876e0a.js" crossorigin="anonymous"></script>
-</head>
+    <title>El Principito | JLCLUB</title>
 <body>
-    <?php include('html/header.html');?>
+    <div id="header"></div>
     <div id="containerSnap">
         <section id="containerFicha">
             <article id="ficha">
-                <img src="content/portadas/principito.jpg" alt="El Principito">
+                <img id="fotoLibro" src="./view/content/portadas/principito.jpg" alt="El Principito">
                 <article id="libro">
                     <div id="titulo">
-                        <h1>EL PRINCIPITO</h1>
-                        <div id="estrellas">
+                        <h1 class="titulo">EL PRINCIPITO</h1>
+                        <div class="estrellas">
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -28,20 +27,20 @@
                             <span class="fa fa-star"></span>
                         </div>
                     </div>
-                    <h3>ANTOINE DE SAINT EXUPERY</h3>
+                    <h3 class="autor">ANTOINE DE SAINT EXUPERY</h3>
                     <br>
-                    <p><b>Novela</b></p>
+                    <p><b id="formato">Novela</b></p>
                     <br>
-                    <p>«La primera vez que papá murió todos pensamos que estaba fingiendo.» Así empieza Malaherba de Manuel Jabois. Un día Mr. Tamburino, Tambu, un niño de diez años, se encuentra a su padre tirado en la habitación y conoce a Elvis, un nuevo compañero de su clase. Descubrirá por primera vez el amor y la muerte, pero no de la forma que él cree. Y los dos, Tambu y Elvis, vivirán juntos los últimos días de la niñez, esos en los que aún pasan cosas que no se pueden explicar y sentimientos a los que todavía no se sabe poner nombre. Esta es una historia de dos niños que viven una extraña y solitaria historia de amor. Un libro sobre las cosas terribles que se hacen con cariño, escrito con humor y una prosa rápida que avanza llevando a Tambu y su hermana Rebe, a Claudia y su hermano Elvis, a la frontera de un mundo nuevo. «Bien sabe Dios que es más peligrosa la pena que el odio, porque el odio puede destruir lo que odias, pero la pena lo destruye todo.»</p>
+                    <p id="sinopsis">«La primera vez que papá murió todos pensamos que estaba fingiendo.» Así empieza Malaherba de Manuel Jabois. Un día Mr. Tamburino, Tambu, un niño de diez años, se encuentra a su padre tirado en la habitación y conoce a Elvis, un nuevo compañero de su clase. Descubrirá por primera vez el amor y la muerte, pero no de la forma que él cree. Y los dos, Tambu y Elvis, vivirán juntos los últimos días de la niñez, esos en los que aún pasan cosas que no se pueden explicar y sentimientos a los que todavía no se sabe poner nombre. Esta es una historia de dos niños que viven una extraña y solitaria historia de amor. Un libro sobre las cosas terribles que se hacen con cariño, escrito con humor y una prosa rápida que avanza llevando a Tambu y su hermana Rebe, a Claudia y su hermano Elvis, a la frontera de un mundo nuevo. «Bien sabe Dios que es más peligrosa la pena que el odio, porque el odio puede destruir lo que odias, pero la pena lo destruye todo.»</p>
                     <br>
-                    <p><b>35</b> pertsonak irakurri dute liburu hau, batazbesteko adina <b>10</b> urte dira.</p>
+                    <p><b class="numeroLectores">35</b> pertsonak irakurri dute liburu hau, batazbesteko adina <b id="edadMedia">10</b> urte dira.</p>
                     <br>
                     <b>Izenburua beste hizkuntzatan:</b>
-                    <p>Printze txikia, The little Prince, Le petit Prince.</p>
+                    <p id="tituloIdiomas">Printze txikia, The little Prince, Le petit Prince.</p>
                 </article>
             </article>
             <button class="navegar">
-                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-angle-down"></i>
             </button>
         </section>
         <section id="containerReviews">
@@ -50,19 +49,19 @@
                 <b>Liburua</b>
             </button> -->
             <article id="reviews">
-                <article id="header">
-                    <h1>EL PRINCIPITO</h1>
-                    <h3>ANTOINE DE SAINT EXUPERY</h3>
+                <article id="headerReview">
+                    <h1 class="titulo">EL PRINCIPITO</h1>
+                    <h3 class="autor">ANTOINE DE SAINT EXUPERY</h3>
                     <div id="score">
-                        <h1>4.0</h1>
-                        <div id="estrellas">
+                        <h1 id="valoracion">4.0</h1>
+                        <div class="estrellas">
                             <span class="fa fa-star fa-xl checked"></span>
                             <span class="fa fa-star fa-xl checked"></span>
                             <span class="fa fa-star fa-xl checked"></span>
                             <span class="fa fa-star fa-xl checked"></span>
                             <span class="fa fa-star fa-xl"></span>
                         </div>
-                        <p><b>35 Iritziak</b></p>
+                        <p><b class="numeroLectores">35</b><b> Iritziak</b></p>
                     </div>
                 </article>
                 <article id="newReview">
@@ -170,8 +169,11 @@
                     </article>
                 </article>
             </article>
-            <!-- <?php include('html/header.html');?> -->
         </section>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./view/js/generalScripts.js"></script>
+    <script src="./view/js/libro.js"></script>
 </body>
 </html>

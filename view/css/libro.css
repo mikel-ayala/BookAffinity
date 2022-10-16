@@ -53,15 +53,14 @@
     align-items: center;
 }
 
-#titulo h1 {
+.titulo {
     font-size: 3em;
     width: fit-content;
 }
 
-#titulo #estrellas {
+#titulo .estrellas {
     display: flex;
     width: fit-content;
-    margin-left: 2%;
 }
 
 .navegar {
@@ -94,14 +93,14 @@
     margin: 4%;
 }
 
-#header {
+#headerReview {
     display: flex;
     flex-direction: column;
     width: 75%;
-    height: 25%;
+    height: 10%;
 }
 
-#header h1 {
+#headerReview  h1 {
     font-size: 3em;
     width: fit-content;
 }
@@ -115,7 +114,7 @@
     color: orange;
 }
 
-#score #estrellas {
+#score .estrellas {
     display: flex;
     align-items: center;
     width: fit-content;
@@ -132,12 +131,12 @@
     display: flex;
     justify-content: flex-end;
     width: 10%;
-    height: 25%;
+    height: 10%;
 }
 
 #gehitu {
     width: 100%;
-    height: 25%;
+    height: 75%;
 }
 
 #gehitu b {
