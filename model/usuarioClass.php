@@ -129,7 +129,6 @@ class usuarioClass {
     }
 
     function getObjectVars(){
-        $vars = get_object_vars($this);
-        return  $vars;
+        return  get_object_vars($this);
     }
 }

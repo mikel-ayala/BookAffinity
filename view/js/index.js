@@ -2,7 +2,8 @@ $(document).ready(load)
 
 function load() {
     setLibrosAprobados();
-
+    slideOne();
+    slideTwo();
 }
 
 var libros;
@@ -43,10 +44,10 @@ function setLibrosAprobados() {
                         break;
                 };
 
-                htmlList += '<article class="libro" onclick="cambiarPagina(' + libros[i]['idLibro'] + ')">' +
+                htmlList += '<article id="libro'+i+'" class="libro" onclick="cambiarPagina(' + libros[i]['idLibro'] + ')">' +
                     '<img src="' + libros[i]["foto"] + '" alt="">' +
                     '<div class="infoLibro">' + 
-                        '<h2>' + libros[i]["titulo"] + '</h2>' +
+                        '<h2 id="title'+i+'" class="tituloLibro">' + libros[i]["titulo"] + '</h2>' +
                         '<b>' + libros[i]["autor"] + '</b>' + 
                         '<p>' + libros[i]["formato"].toUpperCase() + '</p>' +
                         '<div class="estrellas">' 
@@ -77,4 +78,49 @@ function cambiarPagina(id) {
     }).then(res=>res.text()).then(response=>{
         window.location.href="libro.html";
     }).catch(error=>console.error('Error status:',error))
+}
+
+
+
+
+
+$('label').on('click', function(){
+    var color = $(this).next().css('color');
+      console.log(color);
+      if (color == 'rgb(177, 177, 177)') {
+        $(this).next().addClass('grey');
+      }
+      else { 
+        $(this).next().removeClass('grey');
+      }
+});
+
+
+
+let sliderOne = document.getElementById("slider-1");
+let sliderTwo = document.getElementById("slider-2");
+let displayValOne = document.getElementById("range1");
+let displayValTwo = document.getElementById("range2");
+let minGap = 0;
+let sliderTrack = document.querySelector(".slider-track");
+let sliderMaxValue = document.getElementById("slider-1").max;
+
+function slideOne(){
+    if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
+        sliderOne.value = parseInt(sliderTwo.value) - minGap;
+    }
+    displayValOne.textContent = sliderOne.value;
+    fillColor();
+}
+function slideTwo(){
+    if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
+        sliderTwo.value = parseInt(sliderOne.value) + minGap;
+    }
+    displayValTwo.textContent = sliderTwo.value;
+    fillColor();
+}
+function fillColor(){
+    percent1 = (sliderOne.value / sliderMaxValue) * 100;
+    percent2 = (sliderTwo.value / sliderMaxValue) * 100;
+    sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #3386FF ${percent1}% , #3386FF ${percent2}%, #dadae5 ${percent2}%)`;
 }

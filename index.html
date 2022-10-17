@@ -16,8 +16,77 @@
 
     <div id="containerListaFiltro">
         <aside id="filtroLibros">
-
-        </aside>
+            <h1 class="filtroTitulo">FILTRATU LIBURUAK</h1>
+            <h2 class="librosEncontrados"><span class="numeroLibros">37</span> Liburuak</h2>
+            <div id="formato">
+                <h1>FORMATUAK</h1>
+                <div class="opcionesFlex">
+                    <div class="centrado">
+                        <div class="opcion">
+                            <input type="checkbox" id="clothing">
+                            <label for="clothing" class="check-box"></label>
+                            <h4>Novela</h4>
+                        </div>
+                    </div>
+                    <div class="centrado">
+                        <div class="opcion">
+                            <input type="checkbox" id="equipment">
+                            <label for="equipment" class="check-box"></label>
+                            <h4>Manga</h4>
+                        </div>
+                    </div>
+                    <div class="centrado">
+                        <div class="opcion">
+                            <input type="checkbox" id="trips">
+                            <label for="trips" class="check-box"></label>
+                            <h4>Komik</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="autor">
+                <h1>IDAZLEAK</h1>
+                <div class="opcionesFlex">
+                    
+                </div>
+            </div>
+            <div id="valoracion">
+                <h1>BALORAZIOA</h1>
+                <div id="estrellas">
+                    <input type="radio" id="star5" name="rate" value="5" />
+                    <label class="fa fa-star fa-2xl"  for="star5" title="text"></label>
+                    <input type="radio" id="star4" name="rate" value="4" />
+                    <label class="fa fa-star fa-2xl"  for="star4" title="text"></label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label class="fa fa-star fa-2xl"  for="star3" title="text"></label>
+                    <input type="radio" id="star2" name="rate" value="2" />
+                    <label class="fa fa-star fa-2xl"  for="star2" title="text"></label>
+                    <input type="radio" id="star1" name="rate" value="1" />
+                    <label class="fa fa-star fa-2xl"  for="star1" title="text"></label>
+                </div>
+            </div>
+            <div id="edad">
+                <h1>ADINA</h1>
+                <div class="sliderCentrado">
+                    <div class="wrapper">
+                        <div class="values">
+                            <span id="range1">
+                                5
+                            </span>
+                            <span> &dash; </span>
+                            <span id="range2">
+                                70
+                            </span>
+                        </div>
+                        <div class="container">
+                            <div class="slider-track"></div>
+                            <input type="range" min="5" max="70" value="5" id="slider-1" oninput="slideOne()">
+                            <input type="range" min="5" max="70" value="70" id="slider-2" oninput="slideTwo()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>    
         <section id="listaLibros"></section>
     </div>
 

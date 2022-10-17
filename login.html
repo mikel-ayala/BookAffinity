@@ -4,44 +4,91 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | JLCLUB</title>
+    <link rel="stylesheet" href="./view/css/generalStyles.css">
+    <link rel="stylesheet" href="./view/css/loginRegistro.css">
+
+    <script src="https://kit.fontawesome.com/9d49876e0a.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <form id="loginForm">
-        <p>Erabiltzailea:<input type="text" name="usuario" id="usuario"/></p>               
-        <p>Pasahitza:<input type="password" name="contraseina" id="contraseina"/></p>
-        <p><button id="login">Sartu</button></p>
-    </form>
-    <form id="alumnoForm">
-        <p>Izena:<input type="text" name="nombre" id="nombre"/></p>
-        <p>Abizenak:<input type="text" name="apellidos" id="apellidos"/></p>
-        <p>Erabiltzailea:<input type="text" name="usuario" id="usuario"/></p>
-        <p>Helbide elektronikoa:<input type="text" name="usuario" id="usuario"/></p>
-        <p>Pasahitza:<input type="password" name="contraseina" id="contraseina"/></p>
-        <p>Errepikatu pasahitza:<input type="password" name="contraseina2" id="contraseina2"/></p>
-        <p>Telefonoa:<input type="text" name="telefono" id="telefono"/></p>
-        <p>Argazkia:<input type="file" id="foto" name="foto" accept="image/*"></p>
-        <p>Jaiotze data: (aaaa/mm/dd)<input type="date" id="nacimiento" name="nacimiento"></p>
-        <p>Ikastetzea:<input type="text" name="instituto" id="instituto"/></p>
-        <p>Maila:<input type="text" name="curso" id="curso"/></p>
-        <p>Ikasturtea:<input type="text" name="aino" id="aino"/></p>
-        <p>Taldearen kodea:<input type="text" name="codigo" id="codigo"/></p>
-        <p>Erantzunkisuna sinatu:<input type="checkbox" name="terminos" id="terminos" value="aceptado"></p>
-        <p><button id="registroAlumno">Sartu</button></p>
-    </form>
-    <form id="profesorForm">
-        <p>Izena:<input type="text" name="nombre" id="nombre"/></p>
-        <p>Abizenak:<input type="text" name="apellidos" id="apellidos"/></p>
-        <p>Erabiltzailea:<input type="text" name="usuario" id="usuario"/></p>
-        <p>Helbide elektronikoa:<input type="text" name="usuario" id="usuario"/></p>
-        <p>Pasahitza:<input type="password" name="contraseina" id="contraseina"/></p>
-        <p>Errepikatu pasahitza:<input type="password" name="contraseina2" id="contraseina2"/></p>
-        <p>Telefonoa:<input type="text" name="telefono" id="telefono"/></p>
-        <p>Argazkia:<input type="file" id="foto" name="foto" accept="image/*"></p>
-        <p>Jaiotze data: (aaaa/mm/dd)<input type="date" id="nacimiento" name="nacimiento"></p>
-        <p>Ikastetzea:<input type="text" name="instituto" id="instituto"/></p>
-        <p>Erantzunkisuna sinatu:<input type="checkbox" name="terminos" id="terminos" value="aceptado"></p>
-        <p><button id="registroProfe">Sartu</button></p>
-    </form>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Erregistratu</h1>
+                <div class="button-container">
+                    <button id="typeIrakaslea" value="formIkaslea">Ikaslea</button>
+                    <button id="typeIkaslea" value="formIrakaslea">Irakaslea</button>
+                </div>
+                <div id="formIrakaslea" class="signUpForm" hidden>
+                    <div class="twoInputRow">
+                        <input type="text" name="nombre" placeholder="Izena *" id="nombre"/>
+                        <input type="text" name="apellidos" placeholder="Abizenak *" id="apellidos"/>
+                    </div>
+                    <div class="twoInputRow">
+                        <input type="text" name="usuario" placeholder="Erabiltzailea *" id="usuario"/>
+                        <input type="text" name="telefono" placeholder="Telefonoa" id="telefono"/>
+                    </div>
+                    <input type="password" name="contraseina" placeholder="Pasahitza *" id="contraseina"/>
+                    <input type="password" name="contraseina2" placeholder="Errepikatu pasahitza *" id="contraseina2"/>
+                    <input type="email" name="email" placeholder="Helbide elektronikoa *" id="email"/>
+                    <input type="file" placeholder="Argazkia" id="foto" name="foto" accept="image/*">
+                    <input type="date" placeholder="Jaiotze data: (aaaa/mm/dd)" id="nacimiento" name="nacimiento">
+                    <p>Erantzunkisuna sinatu:<input type="checkbox" name="terminos" id="terminos" value="aceptado"></p>
+                    <button id="registroProfe">Sartu</button>
+                </div>
+                <div id="formIkaslea" class="signUpForm" >
+                    <div class="twoInputRow">
+                        <input type="text" name="nombreIkaslea" placeholder="Izena *" id="nombreIkaslea"/>
+                        <input type="text" name="apellidosIkaslea" placeholder="Abizenak *" id="apellidosikaslea"/>
+                    </div>
+                    <div class="twoInputRow">
+                        <input type="text" name="usuario" placeholder="Erabiltzailea *" id="usuarioIkaslea"/>
+                        <input type="text" name="telefono" placeholder="Telefonoa *" id="telefonoIkaslea"/>
+                    </div>
+                    <input type="email" name="usuario" placeholder="Helbide elektronikoa *" id="emailIkaslea"/>
+                    <input type="password" name="contraseina" placeholder="Pasahitza *" id="contraseinaIkaslea"/>
+                    <input type="password" name="contraseina2" placeholder="Errepikatu pasahitza *" id="contraseina2Ikaslea"/>
+                    <input type="file" placeholder="Argazkia" id="fotoIkaslea" name="foto" accept="image/*">
+                    <div class="twoInputRow">
+                        <input type="date" placeholder="Jaiotze data: (aaaa/mm/dd) *" id="nacimientoIkaslea" name="nacimiento">
+                        <input type="text" name="instituto" placeholder="Ikastetzea *" id="institutoIkaslea"/>
+                    </div>
+                    <div class="twoInputRow">
+                        <input type="text" name="curso" placeholder="Maila *" id="cursoIkaslea"/>
+                        <input type="text" name="aino" placeholder="Ikasturtea *" id="ainoIkaslea"/>
+                        <input type="text" name="codigo" placeholder="Taldearen kodea *" id="codigoIkaslea"/>
+                    </div>
+                    
+                    <p>Erantzunkisuna sinatu:<input type="checkbox" name="terminos" id="terminos" value="aceptado"></p>
+                    <button id="registroAlumno">Sartu</button>
+                </div>
+            </form>
+        </div>
+        <div class="form-container sign-in-container" >
+            <form action="#">
+                <h1>Saioa hasi</h1>
+                <p id="msgError" class="warn"></p>
+                <input type="text" placeholder="Erabiltzailea" id="usuarioLogin" />
+                <input type="password" placeholder="Pasahitza" id="contraseinaLogin"/>
+                <a href="#">Pasahitza ahaztu duzu?</a>
+                <button type="button" id="login">Sartu</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Kaixo, aspaldiko!</h1>
+                    <p>Sartu zure erabiltzaile eta pasahitza webguean sartzeko.</p>
+                    <button class="ghost" id="signIn">Saioa hasi</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Kaixo, ongi etorri!</h1>
+                    <p>Sartu zure datuak webgunetik nabigatzeko.</p>
+                    <button class="ghost" id="signUp">Erregistratu</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./view/js/generalScripts.js"></script>

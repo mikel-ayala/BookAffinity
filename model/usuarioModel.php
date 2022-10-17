@@ -30,8 +30,8 @@ class usuarioModel extends usuarioClass{
         $result= $this->link->query($sql);
         if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){         
             $this->setRol($row['rol']);
+            $this->setIdUsuario($row['idUsuario']);
             $passwordEncripted=$row['contraseina'];
-                    
             if (password_verify($this->getContraseina(), $passwordEncripted)){
                 $valor=true;
             }

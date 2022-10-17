@@ -1,23 +1,18 @@
 #containerListaFiltro {
-    display: flex;
     width: 100vw;
     height: 100vh;
-}
-
-#filtroLibros {
-    flex: 1;
-    height: fit-content;
+    margin-top: 8vh;
 }
 
 #listaLibros {
     display: flex;
     flex-wrap: wrap;
-    flex: 3.5;
+    margin-left: 25vw;
+    width: 90vw;
 }
 
 .libro {
     width: 25%;
-    height: 65%;
     background-color: white;
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -59,4 +54,386 @@
   
 .libro:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#filtroLibros {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: 5vh;
+    width: 20vw;
+    height: 80vh;
+    background-color: rgb(253, 253, 253);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 1%;
+}
+
+#valoracion, #autor, #formato, #edad {
+    margin: 10px 0;
+    position: relative;
+    clear: both;
+}
+
+.filtroTitulo {
+    font-size: 1.8em;
+    color: rgb(101, 101, 101);
+    margin-top: 0;
+    margin-left: 0;
+    padding-top: 15px;
+    align-self: center;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+
+h4 {
+    font-size: 1.1em;
+    display: inline-block;
+    margin: 5px 10px;
+    clear: none;
+    color: #b1b1b1;
+}
+
+.librosEncontrados {
+    align-self: center;
+}
+
+.numeroLibros {
+    color: #3386FF;
+    font-weight: 600;
+    font-size: 1.8em;
+}
+
+#formato .check-box {
+    float: left;
+}
+
+.opcionesFlex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.centrado {
+    margin: 10px 0;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.opcion {
+    width: 70%;
+    clear: none;
+    color: #b1b1b1;
+}
+
+.clearMarg {
+    margin: 15px 0;
+}
+
+#estrellas {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 32px;
+}
+
+#estrellas * {
+    color: #b1b1b1;
+}
+
+#estrellas:not(:checked) input {
+    position:absolute;
+    top:-9999px;
+}
+
+#estrellas input:checked ~ label {
+    color: #3386FF;    
+}
+
+#estrellas:not(:checked) label:hover, #estrellas:not(:checked) label:hover ~ label {
+    color: #3386FF;  
+}
+
+#estrellas input:checked + label:hover, #estrellas input:checked + label:hover ~ label, #estrellas input:checked ~ label:hover, #estrellas input:checked ~ label:hover ~ label, 
+#estrellas label:hover ~ input:checked ~ label {
+    color: #3386FF;
+}
+
+
+.sliderCentrado {
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper{
+    position: relative;
+    width: 80%;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+
+input[type="range"]{
+    appearance: none;
+    width: 100%;
+    outline: none;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.slider-track{
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track{
+    appearance: none;
+    height: 5px;
+}
+input[type="range"]::-moz-range-track{
+    appearance: none;
+    height: 5px;
+}
+input[type="range"]::-ms-track{
+    appearance: none;
+    height: 5px;
+}
+input[type="range"]::-webkit-slider-thumb{
+    appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    background-color: #3386FF;
+    cursor: pointer;
+    margin-top: -9px;
+    pointer-events: auto;
+    border-radius: 50%;
+}
+input[type="range"]::-moz-range-thumb{
+    appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #3386FF;
+    pointer-events: auto;
+}
+input[type="range"]::-ms-thumb{
+    appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #3386FF;
+    pointer-events: auto;
+}
+input[type="range"]:active::-webkit-slider-thumb{
+    background-color: #ffffff;
+    border: 3px solid #3386FF;
+}
+
+.values{
+    background-color: #3386FF;
+    width: 40%;
+    position: relative;
+    margin: auto;
+    padding: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    color: #ffffff;
+}
+.values:before{
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-top: 15px solid #3386FF;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    margin: auto;
+    bottom: -14px;
+    left: 0;
+    right: 0;
+}
+
+
+
+
+
+@-moz-keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 15px;
+    }
+}
+
+@-webkit-keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 15px;
+    }
+}
+
+@keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 15px;
+    }
+}
+
+@keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 0;
+    }
+    100% {
+        height: 30px;
+    }
+}
+
+@-webkit-keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 0;
+    }
+    100% {
+        height: 30px;
+    }
+}
+
+@-moz-keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 0;
+    }
+    100% {
+        height: 30px;
+    }
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.check-box {
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border: 2px solid #838383;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: border-color ease 0.2s;
+    -o-transition: border-color ease 0.2s;
+    -webkit-transition: border-color ease 0.2s;
+    transition: border-color ease 0.2s;
+    cursor: pointer;
+}
+
+.check-box::before, .check-box::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    height: 0;
+    width: 5px;
+    background-color: #3386FF;
+    display: inline-block;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -o-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    border-radius: 2px;
+    content: " ";
+    -webkit-transition: opacity ease 0.5;
+    -moz-transition: opacity ease 0.5;
+    transition: opacity ease 0.5;
+}
+
+.check-box::before {
+    top: 20px;
+    left: 15px;
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+.check-box::after {
+    top: 10px;
+    left: 4px;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+input[type="checkbox"]:checked + .check-box, .check-box.checked {
+    border-color: #3386FF;
+}
+
+input[type="checkbox"]:checked + .check-box::after, .check-box.checked::after {
+    height: 10px;
+    -moz-animation: dothabottomcheck 0.2s ease 0s forwards;
+    -o-animation: dothabottomcheck 0.2s ease 0s forwards;
+    -webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
+    animation: dothabottomcheck 0.2s ease 0s forwards;
+}
+
+input[type="checkbox"]:checked + .check-box::before, .check-box.checked::before {
+    height: 60px;
+    -moz-animation: dothatopcheck 0.4s ease 0s forwards;
+    -o-animation: dothatopcheck 0.4s ease 0s forwards;
+    -webkit-animation: dothatopcheck 0.4s ease 0s forwards;
+    animation: dothatopcheck 0.4s ease 0s forwards;
+}
+
+.grey {
+    color: rgb(51, 51, 51) !important;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    height: 55px;
+    z-index: 1;
+    width: 100%;
 }
