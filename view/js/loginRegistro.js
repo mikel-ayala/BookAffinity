@@ -3,6 +3,7 @@ $(document).ready(load)
 function load() {
     $('#login').click(loggin);
 }
+
 function preventClick() {
     event.preventDefault();
     event.stopPropagation();

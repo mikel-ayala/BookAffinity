@@ -3,18 +3,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login | JLCLUB</title>
 </head>
 <body>
-    <div id="loginForm">
+    <form id="loginForm">
         <p>Erabiltzailea:<input type="text" name="usuario" id="usuario"/></p>               
         <p>Pasahitza:<input type="password" name="contraseina" id="contraseina"/></p>
-        <p><button id="login" >Sartu</button></p>
+        <p><button id="login">Sartu</button></p>
+    </form>
+    <form id="alumnoForm">
+        <p>Izena:<input type="text" name="nombre" id="nombre"/></p>
+        <p>Abizenak:<input type="text" name="apellidos" id="apellidos"/></p>
+        <p>Erabiltzailea:<input type="text" name="usuario" id="usuario"/></p>
+        <p>Helbide elektronikoa:<input type="text" name="usuario" id="usuario"/></p>
+        <p>Pasahitza:<input type="password" name="contraseina" id="contraseina"/></p>
+        <p>Errepikatu pasahitza:<input type="password" name="contraseina2" id="contraseina2"/></p>
+        <p>Telefonoa:<input type="text" name="telefono" id="telefono"/></p>
+        <p>Argazkia:<input type="file" id="foto" name="foto" accept="image/*"></p>
+        <p>Jaiotze data: (aaaa/mm/dd)<input type="date" id="nacimiento" name="nacimiento"></p>
+        <p>Ikastetzea:<input type="text" name="instituto" id="instituto"/></p>
+        <p>Maila:<input type="text" name="curso" id="curso"/></p>
+        <p>Ikasturtea:<input type="text" name="aino" id="aino"/></p>
+        <p>Taldearen kodea:<input type="text" name="codigo" id="codigo"/></p>
+        <p>Erantzunkisuna sinatu:<input type="checkbox" name="terminos" id="terminos" value="aceptado"></p>
+        <p><button id="registroAlumno">Sartu</button></p>
+    </form>
+    <form id="profesorForm">
+        <p>Izena:<input type="text" name="nombre" id="nombre"/></p>
+        <p>Abizenak:<input type="text" name="apellidos" id="apellidos"/></p>
+        <p>Erabiltzailea:<input type="text" name="usuario" id="usuario"/></p>
+        <p>Helbide elektronikoa:<input type="text" name="usuario" id="usuario"/></p>
+        <p>Pasahitza:<input type="password" name="contraseina" id="contraseina"/></p>
+        <p>Errepikatu pasahitza:<input type="password" name="contraseina2" id="contraseina2"/></p>
+        <p>Telefonoa:<input type="text" name="telefono" id="telefono"/></p>
+        <p>Argazkia:<input type="file" id="foto" name="foto" accept="image/*"></p>
+        <p>Jaiotze data: (aaaa/mm/dd)<input type="date" id="nacimiento" name="nacimiento"></p>
+        <p>Ikastetzea:<input type="text" name="instituto" id="instituto"/></p>
+        <p>Erantzunkisuna sinatu:<input type="checkbox" name="terminos" id="terminos" value="aceptado"></p>
+        <p><button id="registroProfe">Sartu</button></p>
+    </form>
 
-    </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./view/js/generalScripts.js"></script>
+    <script src="./view/js/loginRegistro.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="./view/js/generalScripts.js"></script>
-<script src="./view/js/loginRegistro.js"></script>
 </html>

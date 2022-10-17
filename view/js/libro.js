@@ -2,6 +2,7 @@ $(document).ready(load)
 
 function load() {
     mostrarInfoLibro();
+    $('#navegar').on('click', scrollear);
 }
 
 function mostrarInfoLibro() {
@@ -14,7 +15,7 @@ function mostrarInfoLibro() {
 
         let libroSeleccionado = result.libroSeleccionado;
 
-        
+        document.title = libroSeleccionado['titulo'] + ' | JLCLUB';
         $(".titulo").text(libroSeleccionado['titulo']);
         $(".autor").text(libroSeleccionado['autor']);
         $("#fotoLibro").attr('src', libroSeleccionado['foto']);
@@ -46,5 +47,8 @@ function mostrarInfoLibro() {
         $("#tituloIdiomas").text(libroSeleccionado['tituloIdiomas']);
         
     }).catch(error => console.error("Error status:", error))
+}
 
+function scrollear() {
+    document.getElementById('containerSnap').scrollTo(0, 400, 'smooth');
 }
