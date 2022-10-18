@@ -1,6 +1,6 @@
 <?php
 
-class usuarioClass {
+class valoracionClass {
     protected $idValoracion;
     protected $idUsuario;
     protected $idLibro;

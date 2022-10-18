@@ -17,37 +17,46 @@
     <div id="containerListaFiltro">
         <aside id="filtroLibros">
             <h1 class="filtroTitulo">FILTRATU LIBURUAK</h1>
-            <h2 class="librosEncontrados"><span class="numeroLibros">37</span> Liburuak</h2>
+            <h2 class="librosEncontrados"><span class="numeroLibros">0</span> Liburuak</h2>
             <div id="formato">
                 <h1>FORMATUAK</h1>
                 <div class="opcionesFlex">
                     <div class="centrado">
                         <div class="opcion">
-                            <input type="checkbox" id="clothing">
-                            <label for="clothing" class="check-box"></label>
+                            <input type="checkbox" id="novela">
+                            <label for="novela" class="check-box"></label>
                             <h4>Novela</h4>
                         </div>
                     </div>
                     <div class="centrado">
                         <div class="opcion">
-                            <input type="checkbox" id="equipment">
-                            <label for="equipment" class="check-box"></label>
+                            <input type="checkbox" id="manga">
+                            <label for="manga" class="check-box"></label>
                             <h4>Manga</h4>
                         </div>
                     </div>
                     <div class="centrado">
                         <div class="opcion">
-                            <input type="checkbox" id="trips">
-                            <label for="trips" class="check-box"></label>
+                            <input type="checkbox" id="comic">
+                            <label for="comic" class="check-box"></label>
                             <h4>Komik</h4>
+                        </div>
+                    </div>
+                    <div class="centrado">
+                        <div class="opcion">
+                            <input type="checkbox" id="infantil">
+                            <label for="infantil" class="check-box"></label>
+                            <h4>Infantil</h4>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="autor">
                 <h1>IDAZLEAK</h1>
-                <div class="opcionesFlex">
-                    
+                <div class="centrado2">
+                    <select id="select" name="select">
+                        <option value="0" selected>Idazle bat aukeratu.</option>
+                    </select>
                 </div>
             </div>
             <div id="valoracion">
@@ -67,7 +76,7 @@
             </div>
             <div id="edad">
                 <h1>ADINA</h1>
-                <div class="sliderCentrado">
+                <div class="centrado2">
                     <div class="wrapper">
                         <div class="values">
                             <span id="range1">
@@ -88,9 +97,10 @@
             </div>
         </aside>    
         <section id="listaLibros"></section>
-    </div>
 
-    <!-- <div id="footer"></div> -->
+        <div id="footer"></div>
+
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./view/js/generalScripts.js"></script>

@@ -7,7 +7,7 @@
 #listaLibros {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 25vw;
+    margin-left: 26vw;
     width: 90vw;
 }
 
@@ -60,13 +60,11 @@
     position: fixed;
     display: flex;
     flex-direction: column;
-    margin-top: 5vh;
-    margin-left: 5vh;
-    width: 20vw;
-    height: 80vh;
+    width: 25vw;
+    height: 92vh;
     background-color: rgb(253, 253, 253);
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 1%;
+    box-shadow: 4px 0 4px -4px rgba(0,0,0,0.2);
+    overflow-y: scroll;
 }
 
 #valoracion, #autor, #formato, #edad {
@@ -167,9 +165,14 @@ h4 {
 }
 
 
-.sliderCentrado {
+.centrado2 {
     display: flex;
     justify-content: center;
+}
+
+#select {
+    width: 80%;
+    height: 50px;
 }
 
 .wrapper{

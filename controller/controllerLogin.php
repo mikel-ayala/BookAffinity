@@ -21,6 +21,7 @@ if ($existe) {
     session_start();
     $_SESSION['userId']=$user->getIdUsuario();
     $_SESSION['username']=$user->getUsuario();
+    $_SESSION['foto']=$user->getFoto();
     $_SESSION['userRole']=$user->getRol();
 
     $response['error']="No error";

@@ -7,5 +7,4 @@ $response = array();
 $response['libros'] = $libros->getLibrosAprobados();
 
 echo json_encode($response); 
-
 unset ($libros);

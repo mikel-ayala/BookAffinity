@@ -2,6 +2,7 @@ $(document).ready(load)
 
 function load() {
     setLibrosAprobados();
+    $('label').on('click', checkboxColor);
     slideOne();
     slideTwo();
 }
@@ -17,6 +18,8 @@ function setLibrosAprobados() {
             let containerLibros = document.getElementById('listaLibros');
 
             libros = result.libros;
+
+            $('.numeroLibros').text(libros.length);
 
             let htmlList = "";
             let estrellas = "";
@@ -82,9 +85,7 @@ function cambiarPagina(id) {
 
 
 
-
-
-$('label').on('click', function(){
+function checkboxColor() {
     var color = $(this).next().css('color');
       console.log(color);
       if (color == 'rgb(177, 177, 177)') {
@@ -93,7 +94,7 @@ $('label').on('click', function(){
       else { 
         $(this).next().removeClass('grey');
       }
-});
+}
 
 
 
@@ -112,6 +113,7 @@ function slideOne(){
     displayValOne.textContent = sliderOne.value;
     fillColor();
 }
+
 function slideTwo(){
     if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
         sliderTwo.value = parseInt(sliderOne.value) + minGap;
@@ -119,6 +121,7 @@ function slideTwo(){
     displayValTwo.textContent = sliderTwo.value;
     fillColor();
 }
+
 function fillColor(){
     percent1 = (sliderOne.value / sliderMaxValue) * 100;
     percent2 = (sliderTwo.value / sliderMaxValue) * 100;
