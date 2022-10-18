@@ -1,6 +1,6 @@
 #containerListaFiltro {
     width: 100vw;
-    height: 100vh;
+    height: 92vh;
     margin-top: 8vh;
 }
 
@@ -9,6 +9,7 @@
     flex-wrap: wrap;
     margin-left: 26vw;
     width: 90vw;
+    height: fit-content;
 }
 
 .libro {
@@ -31,12 +32,13 @@
     margin-left: 1%;
 }
 
-.infoLibro b {
+.infoLibro .autorLibro {
     margin-left: 1%;
     color: gray;
+    width: 100%;
 }
 
-.infoLibro p {
+.infoLibro .parrafo {
     margin-left: 1%;
     color: gray;
 }

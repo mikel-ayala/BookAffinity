@@ -1,6 +1,7 @@
 $(document).ready(load)
 
 function load() {
+
     loggedVerify();
     $("#header").load("./view/html/header.html", () => {
         $('#logo').on('click', goToMain);
@@ -18,11 +19,40 @@ function preventClick(event) {
 
 function bookSearcher(event) {
     preventClick(event);
-    if(window.location.href.includes('libro')) {
+
+    if(!window.location.href.includes('index')) {
+        localStorage.setItem('busqueda', $('#titlePiece').val());
         window.location.href = "index.html";
+    } else {
+        var index = 0;
+
+        if (localStorage.getItem('busqueda') != null) {
+            $('#titlePiece').val(localStorage.getItem('busqueda'));
+            localStorage.removeItem('busqueda');
+        }
+
+
+       $(".checkboxFormato").map((i, checkbox)=>{
+            $('#'+checkbox.id).prop('checked', false)
+            $('#'+checkbox.id).next().next().removeClass('grey');
+        });
+
+        $(".tituloLibro").map((i, libro)=>{
+            if(libro.textContent.toUpperCase().indexOf($('#titlePiece').val().toUpperCase())>-1){
+                $('#libro'+i).show();
+                $('#libro'+i).attr( "display-searcher", true)
+                index++;
+            }else{
+                $('#libro'+i).attr( "display-searcher", false)
+                $('#libro'+i).hide()
+            }
+        });
+
+        $('.numeroLibros').text(index);
     }
-    $(".tituloLibro").map((i, libro)=>{(libro.textContent.toUpperCase().indexOf($('#titlePiece').val().toUpperCase())>-1)
-    ?$('#libro'+i).show():$('#libro'+i).hide()});
+}
+function filtro(element) {
+    
 }
 
 function goToMain(event) {

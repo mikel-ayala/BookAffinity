@@ -19,11 +19,15 @@
                     <button id="typeIrakaslea" value="formIkaslea">Ikaslea</button>
                     <button id="typeIkaslea" value="formIrakaslea">Irakaslea</button>
                 </div>
+                <p id="msgErrorRegister" class="warn"></p>
+
                 <div id="formIrakaslea" class="signUpForm" hidden>
+
                     <div class="twoInputRow">
                         <input type="text" name="nombre" placeholder="Izena *" id="nombre"/>
                         <input type="text" name="apellidos" placeholder="Abizenak *" id="apellidos"/>
                     </div>
+                    
                     <div class="twoInputRow">
                         <input type="text" name="usuario" placeholder="Erabiltzailea *" id="usuario"/>
                         <input type="text" name="telefono" placeholder="Telefonoa" id="telefono"/>
@@ -35,12 +39,12 @@
                     <input type="date" placeholder="Jaiotze data: (aaaa/mm/dd)" id="nacimiento" name="nacimiento">
 
                     <p>Erantzunkisuna sinatu:<input type="checkbox" name="terminos" class="terminos" value="aceptado"></p>
-                    <button id="registroProfe">Sartu</button>
+                    <button type="button" id="btnIrakaslea">Sartu</button>
                 </div>
                 <div id="formIkaslea" class="signUpForm" >
                     <div class="twoInputRow">
                         <input type="text" name="nombreIkaslea" placeholder="Izena *" id="nombreIkaslea"/>
-                        <input type="text" name="apellidosIkaslea" placeholder="Abizenak *" id="apellidosikaslea"/>
+                        <input type="text" name="apellidosIkaslea" placeholder="Abizenak *" id="apellidosIkaslea"/>
                     </div>
                     <div class="twoInputRow">
                         <input type="text" name="usuario" placeholder="Erabiltzailea *" id="usuarioIkaslea"/>
@@ -61,7 +65,7 @@
                     </div>
                     
                     <p>Erantzunkisuna sinatu:<input type="checkbox" name="terminos" class="terminos" value="aceptado"></p>
-                    <button id="registroAlumno">Sartu</button>
+                    <button type="button"  id="btnIkaslea" >Sartu</button>
                 </div>
             </form>
         </div>
@@ -80,12 +84,12 @@
                 <div class="overlay-panel overlay-left">
                     <h1>Kaixo, aspaldiko!</h1>
                     <p>Sartu zure erabiltzaile eta pasahitza webguean sartzeko.</p>
-                    <button class="ghost" id="signIn">Saioa hasi</button>
+                    <button type="button" class="ghost" id="signIn">Saioa hasi</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Kaixo, ongi etorri!</h1>
                     <p>Sartu zure datuak webgunetik nabigatzeko.</p>
-                    <button class="ghost" id="signUp">Erregistratu</button>
+                    <button type="button" class="ghost" id="signUp">Erregistratu</button>
                 </div>
             </div>
         </div>

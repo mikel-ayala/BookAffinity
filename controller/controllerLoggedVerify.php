@@ -3,7 +3,7 @@ session_start();
 
 $response=array();
 
-if (isset($_SESSION['userId']) && isset($_SESSION['username']) && isset($_SESSION['userRole']))
+if (isset($_SESSION['userId']) && isset($_SESSION['username']) && isset($_SESSION['userRole']) && isset($_SESSION['foto']))
 {
     $response["userId"]=$_SESSION['userId'];
     $response["username"]=$_SESSION['username'];
