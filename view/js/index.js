@@ -18,7 +18,7 @@ function filterType(event) {
         formatos.push(this.id);
         $(".formatoLibro").map((i, libro)=>{
             for (let j = 0; j < formatos.length; j++) {
-                if(libro.textContent.toUpperCase().indexOf(formatos[j].toUpperCase())>-1 ){
+                if(libro.textContent.toUpperCase().indexOf(formatos[j].toUpperCase())>-1){
                     $('#libro'+i).show();
                     $('#libro'+i).attr( "display-"+formatos[j],true)
                 }else if($('#libro'+i).attr( "display-"+formatos[j-1])){

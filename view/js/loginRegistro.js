@@ -28,14 +28,15 @@ function validateIkaslea(event) {
 	preventClick(event);
 
 	let contraseina2 = $('#contraseina2Ikaslea').val()
-
+	verifyPhoto($('#fotoIkaslea').val())
+	
 	let usuario = { 'nombre':$('#nombreIkaslea').val() , 
 			'apellidos':$('#apellidosIkaslea').val(),
 			'usuario':$('#usuarioIkaslea').val(), 
 			'contraseina':$('#contraseinaIkaslea').val(),
 			'telefono' : $('#telefonoIkaslea').val(),
 			'email' : $('#emailIkaslea').val(),
-			'foto' : $('#fotoIkaslea').val(),
+			'foto' : savedFileBase64,
 			'fechaNacimiento' : $('#nacimientoIkaslea').val(),
 			'instituto' : $('#institutoIkaslea').val(),
 			'curso' : $('#cursoIkaslea').val(),
@@ -53,9 +54,24 @@ function validateIkaslea(event) {
 	}
 
 }
+var savedFileBase64='';
+
+function verifyPhoto(foto) {
+
+	var reader  = new FileReader();
+	if (!new RegExp("(.*?).(jpg|jpeg|png|gif|PNG|JPG|JPEG|GIF)$").test(foto)) {
+	  alert("Solo se aceptan imágenes JPG, PNG y GIF");
+	} else{
+		reader.onloadend = function () {
+			savedFileBase64 = reader.result;    
+			console.log(savedFileBase64);
+		}
+	}
+}
 function validateIrakaslea(event) {
 	preventClick(event);
 
+	verifyPhoto($('#fotoIrakaslea').val())
 	let contraseina2 = $('#contraseina2Irakaslea').val();
 	
 	let usuario = { 'nombre':$('#nombreIrakaslea').val() , 
@@ -64,7 +80,7 @@ function validateIrakaslea(event) {
 			'contraseina':$('#contraseinaIrakaslea').val(),
 			'telefono' : $('#telefonoIrakaslea').val(),
 			'email' : $('#emailIrakaslea').val(),
-			'foto' : $('#fotoIrakaslea').val(),
+			'foto' : savedFileBase64,
 			'fechaNacimiento' : $('#nacimientoIrakaslea').val(),
 			'instituto' : $('#institutoIrakaslea').val(),
 			'rol' : "profesor"
@@ -79,7 +95,6 @@ function validateIrakaslea(event) {
 }
 
 function register(data, contra2, rol) {
-
 	var url = "controller/controllerRegister.php";
 
 	$('#msgErrorRegister').html();
@@ -92,11 +107,29 @@ function register(data, contra2, rol) {
 				body: JSON.stringify(data), 
 				headers:{'Content-Type': 'application/json'}  
 				})
-				.then(res => res.json()).then(result => {            
-						console.log(result.usuario);
+				.then(res => res.json()).then(result => {
+
+					switch (result.error) {
+						case 0:
+							$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Arazo bat gertatu da, saiatu berriro geroago.');
+							break;
+						case 1:
+							$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Badago kontu bat izen horrekin.');
+							break;
+						case 2:
+							$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Badago kontu bat helbide elektroniko horrekin.');
+							break;
+						case 3:
+							location.reload();
+							break;
+						case 4:
+							$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Ezin izan da kontua sortu.');
+							break;
+						default:
+							break;
+					}
 				})
 				.catch(error => console.error('Error status:', error));	
-
 		} else {
 			$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Pasahitzak ez dira berdinak');
 		}

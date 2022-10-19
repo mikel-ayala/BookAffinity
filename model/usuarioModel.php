@@ -63,7 +63,8 @@ class usuarioModel extends usuarioClass {
         $valor = false;
 
         $result= $this->link->query($sql);
-        if (mysqli_fetch_array($result, MYSQLI_ASSOC)) {         
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+            $this->setIdUsuario($row['idUsuario']);        
             $valor = true;
         }
         $this->CloseConnect(); 
@@ -87,5 +88,14 @@ class usuarioModel extends usuarioClass {
 
     public function addUser() {
         $this->OpenConnect();
+        
+        $sql = "INSERT INTO `usuario`(`nombre`, `apellidos`, `usuario`, `email`, `contraseina`, `foto`, `fechaNacimiento`, `instituto`, `curso`, `aino`, `telefono`, `grupo`, `rol`) VALUES ('" . $this->getNombre() . "','" . $this->getApellidos() . "','" . $this->getUsuario() . "','" . $this->getEmail() . "','" . $this->getContraseina() . "','" . $this->getFoto() . "','" . $this->getFechaNacimiento() . "','" . $this->getInstituto() . "','" . $this->getCurso() . "','" . $this->getAino() . "','" . $this->getTelefono() . "','" . $this->getGrupo() . "','" . $this->getRol() . "')";
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {         
+            return true;
+        }
+        $this->CloseConnect(); 
+        return false;
     }
 }
