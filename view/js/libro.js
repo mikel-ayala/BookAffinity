@@ -51,18 +51,19 @@ function mostrarInfoLibro() {
 }
 
 function mostrarValoraciones() {
-    let url = "controller/controllerValoracion.php"
+    let url1 = "controller/controllerValoracion.php"
+    let url2 = "controller/controllerUsuarioValoracion.php";
 
-    fetch(url, {
+
+    fetch(url1, {
         method:'GET'
     }).then(res=>res.json()).then(result=>{
         
         let valoraciones = result.valoraciones;
         let estructura = '';
         let estrellas;
-
+        
         for (let i = 0; i < valoraciones.length; i++) {
-
             switch (parseInt(valoraciones[i]['valoracion'])) {
                 case 1:
                     estrellas = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';
@@ -83,11 +84,19 @@ function mostrarValoraciones() {
                     estrellas = '<span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';                
                     break;
             };
+
+            let data = {'idUsuario' : valoraciones[i]['idUsuario']}
             
-            estructura += '<article class="review">' +
-                                '<img class="perfil" src="" alt="">' +
+            fetch(url2, {
+                method: 'POST', 
+                body: JSON.stringify(data), 
+                headers:{'Content-Type': 'application/json'}  
+                })
+                .then(res2 => res2.json()).then(result2 => {
+                    estructura = '<article class="review">' +
+                                '<img class="perfil" src="' + result2.foto + '" alt="">' +
                                 '<article class="info">' +
-                                    '<b>' + valoraciones[i]['idUsuario'] + '</b>' +
+                                    '<b>' + result2.usuario + '</b>' +
                                     '<div id="estrellas">' +
                                         estrellas +
                                         '<b> ' + valoraciones[i]['edad'] + ' urte</b>' +
@@ -96,10 +105,13 @@ function mostrarValoraciones() {
                                     '<button class="erantzuna"><b>Erantzuna eman</b></button>' +
                                 '</article>' +
                             '</article>';
+
+                    $('#list').append(estructura);
+
+                }) 
+                .catch(error => console.error('Error status:', error));
             
         }
-
-        $('#list').html(estructura);
         
     }).catch(error => console.error("Error status:", error));
 }

@@ -168,6 +168,8 @@
 
 .review .perfil {
     width: 5%;
+    height: 35%;
+    border-radius: 100%;
 }
 
 .review .info {

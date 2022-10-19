@@ -43,34 +43,66 @@ function validateIkaslea(event) {
 			'grupo' : $('#codigoIkaslea').val(),
 			'rol' : "alumno"
 		}
+
 	if(usuario['nombre'] && usuario['apellidos'] && usuario['usuario'] && usuario['contraseina']
 	&& usuario['telefono'] && usuario['email'] && usuario['fechaNacimiento'] && usuario['instituto']
-	&& usuario['curso'] && usuario['aino'] && usuario['grupo']){
-		(usuario['contraseina']==contraseina2)?register(usuario):$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Sartu datu guztiak mesedez')
-
-	}else{
-		$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Sartu datu guztiak mesedez')
-
+	&& usuario['curso'] && usuario['aino'] && usuario['grupo']) {
+		register(usuario, contraseina2, 'Ikaslea');
+	} else {
+		$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Sartu datu guztiak mesedez');
 	}
 
 }
 function validateIrakaslea(event) {
 	preventClick(event);
-	$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i>')
 
+	let contraseina2 = $('#contraseina2Irakaslea').val();
+	
+	let usuario = { 'nombre':$('#nombreIrakaslea').val() , 
+			'apellidos':$('#apellidosIrakaslea').val(),
+			'usuario':$('#usuarioIrakaslea').val(), 
+			'contraseina':$('#contraseinaIrakaslea').val(),
+			'telefono' : $('#telefonoIrakaslea').val(),
+			'email' : $('#emailIrakaslea').val(),
+			'foto' : $('#fotoIrakaslea').val(),
+			'fechaNacimiento' : $('#nacimientoIrakaslea').val(),
+			'instituto' : $('#institutoIrakaslea').val(),
+			'rol' : "profesor"
+	}
 
+	if (usuario['nombre'] && usuario['apellidos'] && usuario['usuario'] && usuario['contraseina']
+	&& usuario['email'] && usuario['instituto']) {
+		register(usuario, contraseina2, 'Irakaslea');
+	} else {
+		$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Sartu datu guztiak mesedez');
+	}
 }
-function register(data) {
+
+function register(data, contra2, rol) {
+
 	var url = "controller/controllerRegister.php";
-	fetch(url, {
-		method: 'POST', 
-		body: JSON.stringify(data), 
-		headers:{'Content-Type': 'application/json'}  
-		})
-		.then(res => res.json()).then(result => {            
-				console.log(result.usuario);
-		})
-		.catch(error => console.error('Error status:', error));	
+
+	$('#msgErrorRegister').html();
+
+	if ($('#terminos' + rol).is(':checked')) {
+		if (data['contraseina']==contra2) {
+
+			fetch(url, {
+				method: 'POST', 
+				body: JSON.stringify(data), 
+				headers:{'Content-Type': 'application/json'}  
+				})
+				.then(res => res.json()).then(result => {            
+						console.log(result.usuario);
+				})
+				.catch(error => console.error('Error status:', error));	
+
+		} else {
+			$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Pasahitzak ez dira berdinak');
+		}
+	} else {
+		$('#msgErrorRegister').html('<i class="fa-solid fa-triangle-exclamation"></i> Erantzunkisuna sinatu mesedez');
+	}
 }
 
 function loggin(event) {
