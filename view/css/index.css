@@ -13,6 +13,7 @@
 }
 
 .libro {
+    display: block;
     width: 25%;
     background-color: white;
     cursor: pointer;
@@ -165,7 +166,6 @@ h4 {
 #estrellas label:hover ~ input:checked ~ label {
     color: #3386FF;
 }
-
 
 .centrado2 {
     display: flex;

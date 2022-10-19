@@ -7,57 +7,120 @@ function load() {
     slideOne();
     slideTwo();
     $('.checkboxFormato').on('change', filterType);
+    $('#select').on('change', filterAutor);
+    $('.estrella').on('click', filterStars);
+    $('.slider').on('input', filterEdad);
 }
 
 var libros;
 
 function filterType(event) {
     preventClick(event);
-    self = this
+
     if ($(this).is(':checked')) {
         formatos.push(this.id);
         $(".formatoLibro").map((i, libro)=>{
             for (let j = 0; j < formatos.length; j++) {
                 if(libro.textContent.toUpperCase().indexOf(formatos[j].toUpperCase())>-1){
                     $('#libro'+i).show();
-                    $('#libro'+i).attr( "display-"+formatos[j],true)
-                }else if($('#libro'+i).attr( "display-"+formatos[j-1])){
-                    $('#libro'+i).attr( "display-"+formatos[j],false)
+                    $('#libro'+i).attr("display-"+formatos[j], true)
+                }else if ($('#libro'+i).attr("display-"+formatos[j-1])){
+                    $('#libro'+i).attr("display-"+formatos[j], false)
                 }else{
                     $('#libro'+i).hide()
-                    $('#libro'+i).attr( "display-"+formatos[j],false)
-
+                    $('#libro'+i).attr("display-"+formatos[j], false)
                 }
             }
    
         });
-    }else{
+    } else {
         const index = formatos.indexOf(this.id);
+
         if (index > -1) { 
             formatos.splice(index, 1); 
         }
-        
 
-        $(".formatoLibro").map((i, libro)=>{
-            if(formatos.length>0){
-                console.log(formatos, self.id);
+        $(".formatoLibro").map((i, libro)=> {
+            if (formatos.length>0) {
                 for (let j = 0; j < formatos.length; j++) {
-                    if(libro.textContent.toUpperCase().indexOf(self.id.toUpperCase())>-1){
-                        $('#libro'+i).hide()
-                        $('#libro'+i).attr("display-"+self.id,false)
+                    if(libro.textContent.toUpperCase().indexOf(this.id.toUpperCase())>-1) {
+                        $('#libro'+i).hide();
+                        $('#libro'+i).attr("display-"+self.id, false);
                     }                 
                 }
-            }else{
-                if($('#libro'+i).attr( "display-searcher")){
+            } else {
+                if ($('#libro'+i).attr("display-searcher")) {
                     $('#libro'+i).show();
-                } 
-            }
-            
-           
-                
+                }
+                $('#libro'+i).attr("display-"+self.id, false)
+            }  
         });
-        
     }
+}
+
+function filterAutor(event) {
+    preventClick(event);
+
+    $(".autorLibro").map((i, libro)=>{
+
+        if(libro.textContent.toUpperCase().indexOf(this.value.toUpperCase())>-1) {
+            $('#libro'+i).show();
+            $('#libro'+i).attr("display-autor", true);
+        } else if (this.value == "0") {
+            $('#libro'+i).show();
+            $('#libro'+i).attr("display-autor", false);
+        } else {
+            $('#libro'+i).hide();
+            $('#libro'+i).attr("display-autor", false);
+        }
+    });
+}
+
+function filterStars(event) {
+    preventClick(event);
+
+    if ($(this).data('waschecked') == true) {
+        this.previousSibling.previousSibling.checked = false;
+        $(this).data('waschecked', false);
+
+        $(".estrellas").map((i)=>{
+            $('#libro'+i).show();
+            $('#libro'+i).attr("display-estrella", false);
+        });
+    } else {
+        this.previousSibling.previousSibling.checked = true;
+        $(this).data('waschecked', true);
+        $(".estrellas").map((i, libro)=> {
+            if(libro.getAttribute('value') >= this.previousSibling.previousSibling.value) {
+                $('#libro'+i).show();
+                $('#libro'+i).attr("display-estrella", true);
+            } else if (this.value == "0") {
+                $('#libro'+i).show();
+                $('#libro'+i).attr("display-estrella", false);
+            } else {
+                $('#libro'+i).hide();
+                $('#libro'+i).attr("display-estrella", false);
+            }
+        });
+
+    }
+}
+
+function filterEdad(event) {
+    preventClick(event);
+
+    $(".infoLibro").map((i, libro)=> {
+        if ($('#slider-1').val() <= libro.getAttribute('value') && libro.getAttribute('value') <= $('#slider-2').val()) {
+            $('#libro'+i).show();
+            $('#libro'+i).attr("display-edad", true);
+        } else if ($('#slider-1').val() == 5 && $('#slider-2').val() == 70) {
+            $('#libro'+i).show();
+            $('#libro'+i).attr("display-edad", false);
+        } else {
+            $('#libro'+i).hide();
+            $('#libro'+i).attr("display-edad", false);
+        }
+    });
 
 }
 
@@ -100,12 +163,12 @@ function setLibrosAprobados() {
                 };
 
                 htmlList += '<article id="libro'+i+'" class="libro" onclick="cambiarPagina(' + libros[i]["idLibro"] + ')">' +
-                    '<img src="' + libros[i]["foto"] + '" alt="">' +
+                    '<img src="./view/content/portadas/' + libros[i]["foto"] + '" alt="">' +
                     '<div class="infoLibro" value="' + libros[i]["edadMedia"] + '">' + 
                         '<h2 id="title'+i+'" class="tituloLibro">' + libros[i]["titulo"] + '</h2>' +
                         '<p class="autorLibro"><b>' + libros[i]["autor"] + '</b></p>' + 
                         '<p class="formatoLibro parrafo">' + libros[i]["formato"].toUpperCase() + '</p>' +
-                        '<div class="estrellas">' 
+                        '<div value="' + libros[i]["valoracion"] + '" class="estrellas">' 
                             + estrellas +
                             '<p class="parrafo">(' + libros[i]["numeroLectores"] + ')</p>' +
                         '</div>' + 

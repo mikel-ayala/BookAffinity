@@ -42,7 +42,7 @@ function bookSearcher(event) {
                 $('#libro'+i).show();
                 $('#libro'+i).attr( "display-searcher", true)
                 index++;
-            }else{
+            } else {
                 $('#libro'+i).attr( "display-searcher", false)
                 $('#libro'+i).hide()
             }

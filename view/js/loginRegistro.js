@@ -17,6 +17,9 @@ function load() {
 
 	$('#btnIrakaslea').on('click', validateIrakaslea);
 	$('#btnIkaslea').on('click', validateIkaslea);
+	$('#fotoIrakaslea').on('change', verifyPhoto);
+	$('#fotoIkaslea').on('change', verifyPhoto);
+
 
 }
 
@@ -28,7 +31,6 @@ function validateIkaslea(event) {
 	preventClick(event);
 
 	let contraseina2 = $('#contraseina2Ikaslea').val()
-	verifyPhoto($('#fotoIkaslea').val())
 	
 	let usuario = { 'nombre':$('#nombreIkaslea').val() , 
 			'apellidos':$('#apellidosIkaslea').val(),
@@ -36,13 +38,14 @@ function validateIkaslea(event) {
 			'contraseina':$('#contraseinaIkaslea').val(),
 			'telefono' : $('#telefonoIkaslea').val(),
 			'email' : $('#emailIkaslea').val(),
-			'foto' : savedFileBase64,
+			'foto' : filename,
 			'fechaNacimiento' : $('#nacimientoIkaslea').val(),
 			'instituto' : $('#institutoIkaslea').val(),
 			'curso' : $('#cursoIkaslea').val(),
 			'aino' : $('#ainoIkaslea').val(),
 			'grupo' : $('#codigoIkaslea').val(),
-			'rol' : "alumno"
+			'rol' : "alumno",
+			'savedFileBase64':savedFileBase64
 		}
 
 	if(usuario['nombre'] && usuario['apellidos'] && usuario['usuario'] && usuario['contraseina']
@@ -55,23 +58,27 @@ function validateIkaslea(event) {
 
 }
 var savedFileBase64='';
+var filename='';
 
-function verifyPhoto(foto) {
+function verifyPhoto(event) {
+	preventClick(event)
+	var file= this.files[0];
 
 	var reader  = new FileReader();
-	if (!new RegExp("(.*?).(jpg|jpeg|png|gif|PNG|JPG|JPEG|GIF)$").test(foto)) {
-	  alert("Solo se aceptan imágenes JPG, PNG y GIF");
+	filename = file.name;
+	filesize= file.size;
+
+	if (!new RegExp("(.*?).(jpg|jpeg|png|PNG|JPEG)$").test(filename)) {
+	  alert("Solo se aceptan imágenes JPG, PNG y JPEG");
 	} else{
 		reader.onloadend = function () {
-			savedFileBase64 = reader.result;    
-			console.log(savedFileBase64);
+			savedFileBase64 = reader.result;   
 		}
+		if (file) {reader.readAsDataURL(file)} 
 	}
 }
 function validateIrakaslea(event) {
 	preventClick(event);
-
-	verifyPhoto($('#fotoIrakaslea').val())
 	let contraseina2 = $('#contraseina2Irakaslea').val();
 	
 	let usuario = { 'nombre':$('#nombreIrakaslea').val() , 
@@ -80,10 +87,11 @@ function validateIrakaslea(event) {
 			'contraseina':$('#contraseinaIrakaslea').val(),
 			'telefono' : $('#telefonoIrakaslea').val(),
 			'email' : $('#emailIrakaslea').val(),
-			'foto' : savedFileBase64,
+			'foto' : filename,
 			'fechaNacimiento' : $('#nacimientoIrakaslea').val(),
 			'instituto' : $('#institutoIrakaslea').val(),
-			'rol' : "profesor"
+			'rol' : "profesor",
+			'savedFileBase64':savedFileBase64
 	}
 
 	if (usuario['nombre'] && usuario['apellidos'] && usuario['usuario'] && usuario['contraseina']

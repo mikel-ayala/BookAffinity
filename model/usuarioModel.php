@@ -94,6 +94,8 @@ class usuarioModel extends usuarioClass {
         $this->link->query($sql);
         if ($this->link->affected_rows > 0) {         
             return true;
+        }else{
+            echo $this->link->error;
         }
         $this->CloseConnect(); 
         return false;
