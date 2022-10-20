@@ -19,7 +19,7 @@ function mostrarInfoLibro() {
         document.title = libroSeleccionado['titulo'] + ' | JLCLUB';
         $(".titulo").text(libroSeleccionado['titulo']);
         $(".autor").text(libroSeleccionado['autor']);
-        $("#fotoLibro").attr('src', libroSeleccionado['foto']);
+        $("#fotoLibro").attr('src', "./view/content/portadas/" + libroSeleccionado['foto']);
         $("#valoracion").text(libroSeleccionado['valoracion']);
         switch (parseInt(libroSeleccionado['valoracion'])) {
             case 1:

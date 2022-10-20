@@ -62,15 +62,16 @@ var filename='';
 
 function verifyPhoto(event) {
 	preventClick(event);
-	
-	var file= this.files[0];
 
+	var file= this.files[0];
 	var reader  = new FileReader();
+
 	filename = file.name;
 	filesize= file.size;
 
-	if (!new RegExp("(.*?).(jpg|jpeg|png|PNG|JPEG)$").test(filename)) {
-	  alert("Solo se aceptan imágenes JPG, PNG y JPEG");
+	if((file.size/ 1024/1024) > 512 ){
+		alert("Argazkia gehiegi okupatzen du");
+		this.value = "";
 	} else{
 		reader.onloadend = function () {
 			savedFileBase64 = reader.result;   

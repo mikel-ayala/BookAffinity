@@ -110,7 +110,7 @@ function filterEdad(event) {
     preventClick(event);
 
     $(".infoLibro").map((i, libro)=> {
-        if ($('#slider-1').val() <= libro.getAttribute('value') && libro.getAttribute('value') <= $('#slider-2').val()) {
+        if (parseInt($('#slider-1').val(), 10) <= parseInt(libro.getAttribute('value'), 10) && parseInt(libro.getAttribute('value'), 10) <= parseInt($('#slider-2').val(), 10)) {
             $('#libro'+i).show();
             $('#libro'+i).attr("display-edad", true);
         } else if ($('#slider-1').val() == 5 && $('#slider-2').val() == 70) {
