@@ -14,11 +14,11 @@ $user->setEmail($data['email']);
 $user->setContraseina($contraseina);
 $user->setFechaNacimiento($data['fechaNacimiento']);
 $user->setInstituto($data['instituto']);
-$user->setCurso($data['curso']);
-$user->setAino($data['aino']);
+$user->setCurso($data['curso']?? '');
+$user->setAino($data['aino'] ?? '');
 $user->setFoto($savedFileBase64);
 $user->setTelefono($data['telefono']);
-$user->setGrupo($data['grupo']);
+$user->setGrupo($data['grupo']?? '');
 $user->setRol($data['rol']);
 
 $response = array();

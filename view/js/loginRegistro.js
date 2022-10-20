@@ -61,7 +61,8 @@ var savedFileBase64='';
 var filename='';
 
 function verifyPhoto(event) {
-	preventClick(event)
+	preventClick(event);
+	
 	var file= this.files[0];
 
 	var reader  = new FileReader();
