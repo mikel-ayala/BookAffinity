@@ -71,18 +71,19 @@ function logout(event) {
     });
 }
 
+var admin=false;
 function loggedVerify() {
     let url = "controller/controllerLoggedVerify.php";
     fetch(url, {
         method: 'GET'
     })
     .then(res=>res.json()).then(result=>{
+        admin = result.userRole=="admin"?true:false;
         if(result.error!="logged" && !window.location.href.includes('login') ){ 
             window.location.href = "login.html";
         }else if(result.error=="logged" && window.location.href.includes('login')){
             window.location.href = "index.html";
         }
-
         $('#foto').attr('src', result.foto);
     });
 }
