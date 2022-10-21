@@ -6,6 +6,7 @@ function load() {
     $("#header").load("./view/html/header.html", () => {
         $('#logo').on('click', goToMain);
         $('#buscador').on('click', bookSearcher);
+        $('#ventanaGrupos').on('click', goToGrupos);
         $('#logout').on('click', logout);
         $('#foto').attr('src', foto);
     });
@@ -58,6 +59,11 @@ function filtro(element) {
 function goToMain(event) {
     preventClick(event)
     window.location.href="index.html"
+}
+
+function goToGrupos(event) {
+    preventClick(event)
+    window.location.href="grupo.html"
 }
 
 function logout(event) {

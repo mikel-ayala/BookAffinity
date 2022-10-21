@@ -32,6 +32,7 @@ class usuarioModel extends usuarioClass {
             $this->setIdUsuario($row['idUsuario']);
             $this->setFoto($row['foto']);
             $this->setRol($row['rol']);
+            $this->setAprobado($row['abrobado']);
             $passwordEncripted = $row['contraseina'];
             if (password_verify($this->getContraseina(), $passwordEncripted)){
                 $valor = true;

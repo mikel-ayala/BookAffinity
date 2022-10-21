@@ -15,6 +15,7 @@ class usuarioClass {
     protected $telefono;
     protected $grupo;
     protected $rol;
+    protected $aprobado;
 
     public function getIdUsuario() {
         return $this->idUsuario;
@@ -126,6 +127,14 @@ class usuarioClass {
 
     public function setRol($rol) {
         $this->rol = $rol;
+    }
+
+    public function getAprobado() {
+        return $this->aprobado;
+    }
+
+    public function setAprobado($aprobado) {
+        $this->aprobado = $aprobado;
     }
 
     function getObjectVars(){

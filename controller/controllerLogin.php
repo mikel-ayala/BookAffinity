@@ -19,15 +19,19 @@ $response = array();
 $response['user'] = $user;
 
 if ($existe) {
-    session_start();
-    $_SESSION['userId'] = $user->getIdUsuario();
-    $_SESSION['username'] = $user->getUsuario();
-    $_SESSION['foto'] = $user->getFoto();
-    $_SESSION['userRole'] = $user->getRol();
+    if ($this->getAprobado() == 1) {
+        session_start();
+        $_SESSION['userId'] = $user->getIdUsuario();
+        $_SESSION['username'] = $user->getUsuario();
+        $_SESSION['foto'] = $user->getFoto();
+        $_SESSION['userRole'] = $user->getRol();
+    } else {
+        $response['error'] = "0";
+    }
 
-    $response['error'] = "No error";
+    $response['error'] = "1";
 } else {
-    $response['error'] = "Sartutako datuak ez dira zuzenak";
+    $response['error'] = "2";
 }
 
 echo json_encode($response);
