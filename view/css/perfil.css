@@ -1,0 +1,77 @@
+#containerPerfil {
+    width: 100%;
+    height: 92vh;
+    margin-top: 8vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+#containerPerfil section {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    background-color: rgb(235, 235, 235);
+}
+
+#containerPerfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#fichaPersona  {
+    display: flex;
+    width: 100%;
+    height: 90%;
+    margin-top: 1%;
+    align-items: center;
+}
+
+#fichaPersona img {
+    width: 30%;
+    height: 90%;
+    margin-left: 2%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+#persona {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    width: 68%;
+    height: 90%;
+}
+
+#persona * {
+    width: 85%;
+}
+/*
+#titulo {
+    display: flex;
+    align-items: center;
+}
+*/
+
+.persona {
+    font-size: 3em;
+    width: fit-content;
+}
+
+.nombreApellidos {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.botonCerrarSesion {
+    display: flex;
+    align-self: flex-start;
+    margin-right: 2%;
+    margin-top: 2%;
+}
+
+.botonCerrarSesion button {
+    border-radius: 20px;
+}

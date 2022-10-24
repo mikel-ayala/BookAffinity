@@ -100,4 +100,29 @@ class usuarioModel extends usuarioClass {
         $this->CloseConnect(); 
         return false;
     }
+
+    public function getUser() {
+        $this->OpenConnect();
+        $id = $this->getIdUsuario();
+
+        $valor = false;
+        
+        $sql = "SELECT * FROM usuario WHERE idUsuario='$id'";
+        
+        $result= $this->link->query($sql);
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {         
+            $this->setUsuario($row['usuario']);
+            $this->setNombre($row['nombre']);
+            $this->setApellidos($row['apellidos']);
+            $this->setEmail($row['email']);
+            $this->setFechaNacimiento($row['fechaNacimiento']);
+            $this->setTelefono($row['telefono']);
+            $this->setInstituto($row['instituto']);
+            $this->setCurso($row['curso']);
+            $this->setGrupo($row['grupo']);
+        }
+
+        $result= $this->link->query($sql);
+        $this->CloseConnect();
+    }
 }

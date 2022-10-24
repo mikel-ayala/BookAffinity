@@ -6,8 +6,8 @@ function load() {
     $("#header").load("./view/html/header.html", () => {
         $('#logo').on('click', goToMain);
         $('#buscador').on('click', bookSearcher);
-        $('#logout').on('click', logout);
         $('#foto').attr('src', foto);
+        $('#perfil').on('click', perfil);
     });
     $("#footer").load("./view/html/footer.html");
 }
@@ -60,15 +60,9 @@ function goToMain(event) {
     window.location.href="index.html"
 }
 
-function logout(event) {
-    preventClick(event);
-    let url = "controller/controllerLogout.php";
-    fetch(url, {
-        method: 'GET'
-    })
-    .then(res=>res.json()).then(result=>{
-        window.location.href = "login.html";
-    });
+function perfil(event) {
+    preventClick(event)
+    window.location.href="perfil.html"
 }
 
 function loggedVerify() {

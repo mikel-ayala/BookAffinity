@@ -118,6 +118,7 @@ function register(data, contra2, rol) {
 				headers:{'Content-Type': 'application/json'}  
 				})
 				.then(res => res.json()).then(result => {
+					alert("hola");
 
 					switch (result.error) {
 						case 0:
