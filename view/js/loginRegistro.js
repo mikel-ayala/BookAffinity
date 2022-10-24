@@ -79,6 +79,7 @@ function verifyPhoto(event) {
 		if (file) {reader.readAsDataURL(file)} 
 	}
 }
+
 function validateIrakaslea(event) {
 	preventClick(event);
 	let contraseina2 = $('#contraseina2Irakaslea').val();
@@ -163,7 +164,7 @@ function loggin(event) {
 			
 			switch (result.error) {
 				case "0":
-					$('#msgError').html('<i class="fa-solid fa-triangle-exclamation"></i> Kontua es dago aktibatuta horaindik')
+					$('#msgError').html('<i class="fa-solid fa-triangle-exclamation"></i> Kontua ez dago aktibatuta horaindik')
 					break;
 				case "1":
 					window.location.href = "index.html";

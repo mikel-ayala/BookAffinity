@@ -32,7 +32,7 @@ class usuarioModel extends usuarioClass {
             $this->setIdUsuario($row['idUsuario']);
             $this->setFoto($row['foto']);
             $this->setRol($row['rol']);
-            $this->setAprobado($row['abrobado']);
+            $this->setAprobado($row['aprobado']);
             $passwordEncripted = $row['contraseina'];
             if (password_verify($this->getContraseina(), $passwordEncripted)){
                 $valor = true;
@@ -58,7 +58,7 @@ class usuarioModel extends usuarioClass {
 
     public function findUserByUser() {
         $this->OpenConnect();
-        $username = $this->getEmail();
+        $username = $this->getUsuario();
 
         $sql = "SELECT * FROM usuario WHERE usuario='$username'";
         $valor = false;

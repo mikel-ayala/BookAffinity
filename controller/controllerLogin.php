@@ -19,7 +19,7 @@ $response = array();
 $response['user'] = $user;
 
 if ($existe) {
-    if ($this->getAprobado() == 1) {
+    if ($user->getAprobado() == 1) {
         session_start();
         $_SESSION['userId'] = $user->getIdUsuario();
         $_SESSION['username'] = $user->getUsuario();
