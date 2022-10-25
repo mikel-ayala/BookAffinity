@@ -4,6 +4,8 @@ function load() {
 
     loggedVerify();
     $('#grupos button').on('click', animacion);
+    $('.more').on('click', mostrarRegistro);
+    $('.more').click();
 }
 
 function animacion() {
@@ -33,4 +35,18 @@ function animacion() {
         });
     }
 
+}
+
+function mostrarRegistro() {
+
+    let registros = $(this).parent().parent().next();
+    let icono = $(this).children();
+    
+    registros.slideToggle( "slow", function() {
+        if (icono.hasClass('fa-plus')) {
+            icono.removeClass('fa-plus').addClass('fa-minus');
+        } else {
+            icono.removeClass('fa-minus').addClass('fa-plus');
+        }
+      });
 }
