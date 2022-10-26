@@ -206,3 +206,118 @@ button {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
+
+/* MODAL CSS */
+#modalBackground {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+}
+
+.modalContainer {
+    display: none; 
+    position: fixed; 
+    z-index: 1;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto;
+}
+
+.modalContainer .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-top: 10px solid #58abb7;
+    width: 60%;
+    border-radius: 20px;
+}
+
+.modalContainer .closeModal {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modalContainer .closeModal:hover,
+.modalContainer .closeModal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#mensajeErrorComentarioP {
+    width: 80%;
+}
+
+#mensajeErrorComentario {
+    display: none;
+    margin-bottom: 10px;
+    color: red;
+}
+
+.modalContainer #estrellas {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+    width: 100%;
+    height: 32px;
+    margin-top: 10px;
+}
+
+.modalContainer #estrellas * {
+    color: #b1b1b1;
+}
+
+.modalContainer #estrellas:not(:checked) input {
+    position:absolute;
+    top:-9999px;
+}
+
+.modalContainer #estrellas input:checked ~ label {
+    color: #3386FF;    
+}
+
+.modalContainer #estrellas:not(:checked) label:hover,.modalContainer  #estrellas:not(:checked) label:hover ~ label {
+    color: #3386FF;  
+}
+
+.modalContainer #estrellas input:checked + label:hover, .modalContainer #estrellas input:checked + label:hover ~ label, .modalContainer #estrellas input:checked ~ label:hover,.modalContainer #estrellas input:checked ~ label:hover ~ label, 
+.modalContainer #estrellas label:hover ~ input:checked ~ label {
+    color: #3386FF;
+}
+
+#obligatorioEstrellas {
+    color: black;
+    margin-left: 185px;
+    margin-bottom: -5px;
+}
+
+#idioma {
+    margin-top: 10px;
+}
+
+#comentario {
+    margin-top: 10px;
+}
+
+#comentarioVal {
+    width: 60%;
+    height: 120px;
+}
+
+#tituloAlt {
+    margin-top: 10px;
+}
+
+#valorar {
+    margin-top: 15px;
+}

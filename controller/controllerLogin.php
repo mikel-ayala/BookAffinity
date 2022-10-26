@@ -24,6 +24,7 @@ if ($existe) {
     $_SESSION['username'] = $user->getUsuario();
     $_SESSION['foto'] = $user->getFoto();
     $_SESSION['userRole'] = $user->getRol();
+    $_SESSION['fechaNac'] = $user->getFechaNacimiento();
 
     $response['error'] = "No error";
 } else {

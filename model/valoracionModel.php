@@ -46,4 +46,23 @@ class valoracionModel extends valoracionClass {
         return $valoraciones;
     }
 
+    public function createValoracion(){
+        $this->OpenConnect();
+
+        $sql = '';
+        if($this->getTituloSolicitado() != '')
+            $sql = "INSERT INTO `valoracion`(`idUsuario`, `idLibro`, `valoracion`, `comentario`, `idioma`, `edad`, `tituloSolicitado`) VALUES ('" . $this->getIdUsuario() . "','" . $this->getIdLibro() . "','" . $this->getValoracion() . "','" . $this->getComentario() . "','" . $this->getIdioma() . "','" . $this->getEdad() . "','" . $this->getTituloSolicitado() . "')";
+        else
+            $sql = "INSERT INTO `valoracion`(`idUsuario`, `idLibro`, `valoracion`, `comentario`, `idioma`, `edad`) VALUES ('" . $this->getIdUsuario() . "','" . $this->getIdLibro() . "','" . $this->getValoracion() . "','" . $this->getComentario() . "','" . $this->getIdioma() . "','" . $this->getEdad() . "')";
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {         
+            return true;
+        }else{
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
+
 }

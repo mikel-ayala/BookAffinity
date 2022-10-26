@@ -65,5 +65,4 @@ class libroModel extends libroClass {
         $this->CloseConnect();
         return $autores;
     }
-
 }
