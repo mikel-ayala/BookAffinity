@@ -24,6 +24,7 @@ if ($existe) {
         $_SESSION['userId'] = $user->getIdUsuario();
         $_SESSION['username'] = $user->getUsuario();
         $_SESSION['foto'] = $user->getFoto();
+        $_SESSION['grupo'] = $user->getGrupo();
         $_SESSION['userRole'] = $user->getRol();
     } else {
         $response['error'] = "0";

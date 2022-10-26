@@ -31,6 +31,7 @@ class usuarioModel extends usuarioClass {
         if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {         
             $this->setIdUsuario($row['idUsuario']);
             $this->setFoto($row['foto']);
+            $this->setGrupo($row['grupo']);
             $this->setRol($row['rol']);
             $this->setAprobado($row['aprobado']);
             $passwordEncripted = $row['contraseina'];

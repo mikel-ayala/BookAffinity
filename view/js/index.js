@@ -175,7 +175,7 @@ function setLibrosAprobados() {
                     '</div>' +
                 '</article>';
             };
-            console.log(admin);
+
             containerLibros.innerHTML = htmlList;
 
             $('#buscador').click();
