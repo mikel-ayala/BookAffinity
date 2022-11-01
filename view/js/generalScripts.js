@@ -90,6 +90,7 @@ function loggedVerify() {
         admin = result.userRole=="admin"?true:false;
         profe = result.userRole=="profesor"?true:false;
         grupo = result.grupo;
+        localStorage.setItem('grupo', grupo);
         checkRol();
         if(result.error!="logged" && !window.location.href.includes('login') ){ 
             window.location.href = "login.html";

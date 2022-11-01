@@ -125,7 +125,7 @@ function filterEdad(event) {
 }
 
 function setLibrosAprobados() {
-    var url = "controller/controllerIndex.php";
+    let url = "controller/controllerIndex.php";
 
 	fetch(url, {method: 'GET'})
         .then(res => res.json()).then(result => {
@@ -185,7 +185,7 @@ function setLibrosAprobados() {
 }
 
 function setAutores() {
-    var url = "controller/controllerAutor.php";
+    let url = "controller/controllerAutor.php";
 
     fetch(url, {method: 'GET'})
         .then(res => res.json()).then(result => {

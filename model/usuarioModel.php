@@ -102,4 +102,37 @@ class usuarioModel extends usuarioClass {
         $this->CloseConnect(); 
         return false;
     }
+
+    public function getPendientes() {
+        $this->OpenConnect();
+        $grupos = $this->getGrupo();
+        $grupo = str_replace(", ", "','", $grupos);
+
+        $sql = "SELECT * FROM usuario WHERE grupo IN ('$grupo') AND aprobado=0";
+        $result= $this->link->query($sql);
+
+        $pendientes = array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $usuario = new usuarioModel();
+            
+            $usuario->setIdUsuario($row['idUsuario']);
+            $usuario->setNombre($row['nombre']);
+            $usuario->setApellidos($row['apellidos']);
+            $usuario->setUsuario($row['usuario']);
+            $usuario->setFechaNacimiento($row['fechaNacimiento']);
+            $usuario->setEmail($row['email']);
+            $usuario->setTelefono($row['telefono']);
+            $usuario->setInstituto($row['instituto']);
+            $usuario->setCurso($row['curso']);
+            $usuario->setAino($row['aino']);
+            $usuario->setFoto($row['foto']);
+            $usuario->setGrupo($row['grupo']);
+
+            array_push($pendientes, get_object_vars($usuario));
+        }
+        
+        $this->CloseConnect(); 
+        return $pendientes;
+    }
 }

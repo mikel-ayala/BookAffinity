@@ -129,6 +129,7 @@ button.active {
 
 .control {
     display: flex;
+    align-self: center;
     gap: 3%;
     width: 15%;
 }
