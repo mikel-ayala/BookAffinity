@@ -189,8 +189,6 @@ function crearValoracion(event){
 }
 
 function notaStars(event) {
-    //preventClick(event);
-
     estrellasNuevaValoracion = this.previousSibling.previousSibling.value;
 }
 

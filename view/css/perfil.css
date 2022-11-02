@@ -15,31 +15,38 @@
 }
 
 #containerPerfil {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
+    height: 92vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    /*margin-top: 100px;*/
+}
+
+#containerFichaPersona  {
     height: 100%;
+    scroll-snap-align: start;
+    background-color: rgb(235, 235, 235);
 }
 
-#fichaPersona  {
-    display: flex;
-    width: 100%;
-    height: 90%;
-    margin-top: 1%;
-    align-items: center;
-}
-
-#fichaPersona img {
+#containerFichaPersona img {
     width: 30%;
     height: 90%;
     margin-left: 2%;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    max-height: 600px;
+}
+
+#fichaPersona {
+    display: flex;
+    width: 100%;
+    height: 88%;
+    padding-top: 15px;
 }
 
 #persona {
     display: flex;
     flex-direction: column;
+    margin-top: 1%;
     margin-left: 2%;
     width: 68%;
     height: 90%;
@@ -55,23 +62,99 @@
 }
 */
 
-.persona {
-    font-size: 3em;
-    width: fit-content;
+#persona {
+    font-size: 1.2em;
+    width: 50%;
 }
 
 .nombreApellidos {
-    font-size: 2em;
+    font-size: 2.5em;
     margin-bottom: 5px;
+}
+
+.usuario {
+    font-size: 2em;
 }
 
 .botonCerrarSesion {
     display: flex;
     align-self: flex-start;
-    margin-right: 2%;
+    justify-content: end;
+    margin-right: 4%;
     margin-top: 2%;
+    width: 20%;
 }
 
 .botonCerrarSesion button {
-    border-radius: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+#navegar {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 6%;
+    margin: 0 auto;
+}
+
+#containerValoraciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 4%;
+    height: 92%;
+    width: 92%;
+    scroll-snap-align: start;
+    background-color: rgb(235, 235, 235);
+}
+
+#headerValoraciones {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 10%;
+    margin-top: 4%;
+}
+
+#headerValoraciones h1 {
+    font-size: 3em;
+}
+
+.listaValoraciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 75%;
+    margin-top: 5%;
+    overflow-y: scroll;
+}
+
+#reviewPerfil {
+    width: 80%;
+    margin-bottom: 2.5%;
+    padding: 1%;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+#reviewPerfil p {
+    width: 100%;
+    height: 40%;
+}
+
+#reviewPerfil * {
+    padding-top: 0.3%;
+    padding-bottom: 0.3%;
 }
