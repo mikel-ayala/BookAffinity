@@ -135,4 +135,36 @@ class usuarioModel extends usuarioClass {
         $this->CloseConnect(); 
         return $pendientes;
     }
+
+    public function findUsersByGroup() {
+        $this->OpenConnect();
+        $grupo = $this->getGrupo();
+
+        $sql = "SELECT * FROM usuario WHERE grupo='$grupo' AND aprobado=1";
+        $result= $this->link->query($sql);
+
+        $usuarios = array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $usuario = new usuarioModel();
+            
+            $usuario->setIdUsuario($row['idUsuario']);
+            $usuario->setNombre($row['nombre']);
+            $usuario->setApellidos($row['apellidos']);
+            $usuario->setUsuario($row['usuario']);
+            $usuario->setFechaNacimiento($row['fechaNacimiento']);
+            $usuario->setEmail($row['email']);
+            $usuario->setTelefono($row['telefono']);
+            $usuario->setInstituto($row['instituto']);
+            $usuario->setCurso($row['curso']);
+            $usuario->setAino($row['aino']);
+            $usuario->setFoto($row['foto']);
+            $usuario->setGrupo($row['grupo']);
+
+            array_push($usuarios, get_object_vars($usuario));
+        }
+        
+        $this->CloseConnect(); 
+        return $usuarios;
+    }
 }

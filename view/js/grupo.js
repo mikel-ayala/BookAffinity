@@ -5,8 +5,6 @@ function load() {
     mostrarGrupos();
     mostrarPendientes();
     $('#grupos button').on('click', animacion);
-    $('.more').on('click', mostrarRegistro);
-    $('.more').click();
 }
 
 function mostrarGrupos() {
@@ -18,8 +16,9 @@ function mostrarGrupos() {
         let htmlBody = "";
 
         for (let i = 0; i < grupo.length; i++) {
-            htmlNav += '<button value="' + grupo[i] + '">' + grupo[i] + '</button>';
-            htmlBody += '<section id="' + grupo[i] + '" class="list" data-index="' + i+1 + '" data-status="left"></section>';
+            htmlNav += '<button value="' + grupo[i].replace(' ', '') + '">' + grupo[i].replace(' ', '') + '</button>';
+            htmlBody += '<section id="' + grupo[i].replace(' ', '') + '" class="list" data-index="' + i+1 + '" data-status="left"></section>';
+            mostrarUsuariosGrupo(grupo[i].replace(' ', ''));
         }
 
         htmlNav += '<button class="add"><i class="fa-solid fa-plus"></i></button>';
@@ -61,8 +60,8 @@ function mostrarPendientes() {
                                         '</article>' +
                                     '</article>' +
                                     '<article class="control">' +
-                                        '<button class="aceptar"><i class="fa-solid fa-check fa-xl"></i></button>' +
-                                        '<button class="rechazar"><i class="fa-solid fa-xmark fa-xl"></i></button>' +
+                                        '<button id="' + pendientes[i]['idUsuario'] + '" class="aceptar"><i class="fa-solid fa-check fa-xl"></i></button>' +
+                                        '<button id="' + pendientes[i]['idUsuario'] + '" class="rechazar"><i class="fa-solid fa-xmark fa-xl"></i></button>' +
                                     '</article>' +
                                 '</article>' +
                             '</article>';
@@ -72,6 +71,102 @@ function mostrarPendientes() {
 
             }
         });
+}
+
+function mostrarUsuariosGrupo(grupo) {
+    var url = "controller/controllerGrupo.php";
+    let data = {'grupo':grupo};
+
+    fetch(url, {
+        method: 'POST', 
+        body: JSON.stringify(data), 
+        headers:{'Content-Type': 'application/json'}  
+    })
+    .then(res => res.json()).then(result => {
+
+        if (!result.error) {
+            usuarios = result.usuarios;
+            let html = "";
+
+            for (let i = 0; i < usuarios.length; i++) {
+
+                html += '<article id="' + usuarios[i]['idUsuario'] + '" class="alumnoContainer">' +
+                            '<article class="alumno">' +
+                                '<img src="' + usuarios[i]['foto'] + '" alt="">' +
+                                '<article class="info">' +
+                                    '<h3 class="nombre">' + usuarios[i]['nombre'] + '</h3>' +
+                                    '<h4 class="apellidos">' + usuarios[i]['apellidos'] + '</h4>' +
+                                    '<h4 class="usuario">' + usuarios[i]['usuario'] + '</h4>' +
+                                    '<h5 class="fechaNacimiento">' + usuarios[i]['fechaNacimiento'] + '</h5>' +
+                                '</article>' +
+                                '<article class="moreInfo">' +
+                                    '<h4 class="email">' + usuarios[i]['email'] + '</h4>' +
+                                    '<h4 class="telefono">' + usuarios[i]['telefono'] + '</h4>' +
+                                    '<article class="clase">' +
+                                        '<h4 class="instituto">' + usuarios[i]['instituto'] + '</h4>' +
+                                        '<h4 class="curso">' + usuarios[i]['grupo'] + '</h4>' +
+                                        '<h4 class="aino">' + usuarios[i]['aino'] + '</h4>' +
+                                    '</article>' +
+                                '</article>' +
+                                '<article class="control">' +
+                                    '<button class="more"><i class="fa-solid fa-plus fa-xl"></i></button>' +
+                                    '<button id="' + usuarios[i]['idUsuario'] + '" class="rechazar"><i class="fa-solid fa-xmark fa-xl"></i></button>' +
+                                '</article>' +
+                            '</article>' +
+                            '<article class="registros">' +
+                                mostrarActividadPendiente(usuarios[i]['idUsuario']) +
+                            '</article>' +
+                        '</article>';
+
+            }
+
+            $('#' + grupo).empty();
+            $('#' + grupo).append(html);
+            $('#' + grupo).find('.registros').slideToggle("fast");
+            $('#' + grupo).find('.more').on('click', mostrarRegistro);
+        }
+    })
+    .catch(error => console.error('Error status:', error));
+
+}
+
+function mostrarActividadPendiente(idUsuario) {
+    var url = "controller/controllerActividadPendiente.php";
+    let data = {'idUsuario':idUsuario};
+    let html = "";
+
+    return fetch(url, {
+        method: 'POST', 
+        body: JSON.stringify(data), 
+        headers:{'Content-Type': 'application/json'}  
+    })
+    .then(res => res.json()).then(result => {
+
+        if (!result.error) {
+            let libros = result.libros;
+            let valoraciones = result.valoraciones;
+
+            for (let i = 0; i < libros.length; i++) {
+                html += '<article id="' + libros[i]['idLibro'] + '" class="registro">' +
+                            '<img src="./view/content/portadas/' + libros[i]['foto'] + '" alt="">' +
+                            '<article class="info">' +
+                                '<h4 class="titulo">' + libros[i]['titulo'] + '</h4>' +
+                                '<h5 class="autor">' + libros[i]['autor'] + '</h5>' +
+                                '<p class="formato">' + libros[i]['formato'] + '</p>' +
+                                '<h5 class="idioma">' + libros[i]['idioma'] + '</h5>' +
+                            '</article>' +
+                                '<p class="sinopsis">' + libros[i]['sinopsis'] + '</p>' +
+                            '<article class="control">' +
+                                '<button id="' + libros[i]['idLibro'] + '" class="aceptar"><i class="fa-solid fa-check"></i></button>' +
+                                '<button id="' + libros[i]['idLibro'] + '" class="rechazar"><i class="fa-solid fa-xmark"></i></button>' +
+                            '</article>' +
+                        '</article>';
+            }
+            return html;
+        }
+    })
+    .catch(error => console.error('Error status:', error));
+
 }
 
 function animacion() {

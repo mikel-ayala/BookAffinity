@@ -66,4 +66,30 @@ class libroModel extends libroClass {
         return $autores;
     }
 
+    public function findLibrosByIdUsuario() {
+        $this->OpenConnect();
+        $idUsuario = $this->getIdUsuario();
+
+        $sql="SELECT * FROM libro WHERE idUsuario=$idUsuario AND aprobado=0";
+        $result= $this->link->query($sql);
+        $libros = array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $libro = new libroModel();
+            
+            $libro->setIdLibro($row['idLibro']);
+            $libro->setTitulo($row['titulo']);
+            $libro->setAutor($row['autor']);
+            $libro->setFoto($row['foto']);
+            $libro->setFormato($row['formato']);
+            $libro->setSinopsis($row['sinopsis']);
+            $libro->setIdioma($row['idioma']);
+
+            array_push($libros, get_object_vars($libro));
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $libros;
+    }
+
 }

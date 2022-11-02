@@ -2,6 +2,7 @@
 
 class libroClass {
     protected $idLibro;
+    protected $idUsuario;
     protected $titulo;
     protected $autor;
     protected $foto;
@@ -20,6 +21,14 @@ class libroClass {
     
     public function setIdLibro($idLibro) {
         $this->idLibro = $idLibro;
+    }
+
+    public function getIdUsuario() {
+        return $this->idUsuario;
+    }
+
+    public function setIdUsuario($idUsuario) {
+        $this->idUsuario = $idUsuario;
     }
 
     public function getTitulo() {
