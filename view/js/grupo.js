@@ -60,8 +60,8 @@ function mostrarPendientes() {
                                         '</article>' +
                                     '</article>' +
                                     '<article class="control">' +
-                                        '<button id="' + pendientes[i]['idUsuario'] + '" class="aceptar"><i class="fa-solid fa-check fa-xl"></i></button>' +
-                                        '<button id="' + pendientes[i]['idUsuario'] + '" class="rechazar"><i class="fa-solid fa-xmark fa-xl"></i></button>' +
+                                        '<button id="aceptar' + pendientes[i]['idUsuario'] + '" class="aceptar"><i class="fa-solid fa-check fa-xl"></i></button>' +
+                                        '<button id="rechazar' + pendientes[i]['idUsuario'] + '" class="rechazar"><i class="fa-solid fa-xmark fa-xl"></i></button>' +
                                     '</article>' +
                                 '</article>' +
                             '</article>';
@@ -89,6 +89,8 @@ function mostrarUsuariosGrupo(grupo) {
             let html = "";
 
             for (let i = 0; i < usuarios.length; i++) {
+                
+                mostrarActividadPendiente(usuarios[i]['idUsuario'])
 
                 html += '<article id="' + usuarios[i]['idUsuario'] + '" class="alumnoContainer">' +
                             '<article class="alumno">' +
@@ -110,11 +112,10 @@ function mostrarUsuariosGrupo(grupo) {
                                 '</article>' +
                                 '<article class="control">' +
                                     '<button class="more"><i class="fa-solid fa-plus fa-xl"></i></button>' +
-                                    '<button id="' + usuarios[i]['idUsuario'] + '" class="rechazar"><i class="fa-solid fa-xmark fa-xl"></i></button>' +
+                                    '<button id="eliminar' + usuarios[i]['idUsuario'] + '" class="rechazar"><i class="fa-solid fa-xmark fa-xl"></i></button>' +
                                 '</article>' +
                             '</article>' +
-                            '<article class="registros">' +
-                                mostrarActividadPendiente(usuarios[i]['idUsuario']) +
+                            '<article id="registro' + usuarios[i]['idUsuario'] + '" class="registros">' +
                             '</article>' +
                         '</article>';
 
@@ -127,7 +128,6 @@ function mostrarUsuariosGrupo(grupo) {
         }
     })
     .catch(error => console.error('Error status:', error));
-
 }
 
 function mostrarActividadPendiente(idUsuario) {
@@ -135,7 +135,7 @@ function mostrarActividadPendiente(idUsuario) {
     let data = {'idUsuario':idUsuario};
     let html = "";
 
-    return fetch(url, {
+    fetch(url, {
         method: 'POST', 
         body: JSON.stringify(data), 
         headers:{'Content-Type': 'application/json'}  
@@ -162,7 +162,8 @@ function mostrarActividadPendiente(idUsuario) {
                             '</article>' +
                         '</article>';
             }
-            return html;
+
+            $('#registro' + idUsuario).append(html);
         }
     })
     .catch(error => console.error('Error status:', error));

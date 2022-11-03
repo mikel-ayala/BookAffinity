@@ -11,6 +11,7 @@ function load() {
         $('#foto').attr('src', foto);
     });
     $("#footer").load("./view/html/footer.html");
+    //$("#addLibro").load("./view/html/addLibro.html")
 }
 
 function preventClick(event) {
