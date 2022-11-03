@@ -4,8 +4,11 @@ function load() {
     mostrarInfoPersona();
     mostrarValoraciones();
     $('#navegar').on('click', scrollear);
+    $('#editPerfil').on('click', editPerfil);
     $('#logout').on('click', logout);
 }
+
+let primeraVezEdit = true;
 
 function mostrarInfoPersona() {
 
@@ -52,9 +55,6 @@ function mostrarValoraciones() {
         
         let valoraciones = result.valoraciones;
         let estructura = '';
-        //let estrellas;
-        
-        console.log(valoraciones);
 
         for (let i = 0; i < valoraciones.length; i++) {
             switch (parseInt(valoraciones[i]['valoracion'])) {
@@ -86,7 +86,6 @@ function mostrarValoraciones() {
                 headers:{'Content-Type': 'application/json'}  
                 })
                 .then(res2 => res2.json()).then(result2 => {
-                    console.log(i);
                     estructura = '<article id="reviewPerfil">' +
                                     '<b>' + result2.titulo + '</b>' +
                                     '<div id="estrellas">' +
@@ -102,6 +101,78 @@ function mostrarValoraciones() {
         }
         
     }).catch(error => console.error("Error status:", error));
+}
+
+function editPerfil() {
+    let usuario = document.getElementsByClassName('usuario')[0];
+    let email = document.getElementById('email');
+    let telefono = document.getElementById('telefono');
+
+    if(primeraVezEdit){
+        $('#editPerfil').text("Guardar");
+        $('#editPerfil').css("background-color", "red");
+
+        usuario.style.display = "none";
+        email.style.display = "none";
+        telefono.style.display = "none";
+
+        const editUsuario = document.createElement("input");
+        editUsuario.type = "text";
+        editUsuario.style.fontSize = "2em";
+        editUsuario.id = "editUsuarioInput";
+        editUsuario.value = $('.usuario').text();
+        usuario.parentNode.appendChild(editUsuario);
+
+        const editEmail = document.createElement("input");
+        editEmail.type = "text";
+        editEmail.id = "editEmailInput";
+        editEmail.value = $('#email').text();
+        email.parentNode.appendChild(editEmail);
+
+        const editTelefono = document.createElement("input");
+        editTelefono.type = "text";
+        editTelefono.id = "editTelefonoInput";
+        editTelefono.value = $('#telefono').text();
+        telefono.parentNode.appendChild(editTelefono);
+
+        primeraVezEdit = false;
+    } else {
+        $('#editPerfil').text("Editar perfil");
+        $('#editPerfil').css("background-color", "#3386FF"); 
+        
+        editarUsuarioBD();
+
+        $(".usuario").text($('#editUsuarioInput').val());
+        $("#email").text($('#editEmailInput').val());
+        $("#telefono").text($('#editTelefonoInput').val());
+        
+        usuario.style.display = "block";
+        email.style.display = "block";
+        telefono.style.display = "block";
+
+        document.getElementById('editUsuarioInput').remove();
+        document.getElementById('editEmailInput').remove();
+        document.getElementById('editTelefonoInput').remove();
+
+        primeraVezEdit = true;
+    }
+    
+}
+
+function editarUsuarioBD(){
+    let url = "controller/controllerEditarPerfil.php";
+    let data = {'usuario' : $('#editUsuarioInput').val(), 'email' : $('#editEmailInput').val(), 'telefono' : parseInt(toNumTelf($('#editTelefonoInput').val()))}
+
+    fetch(url, {
+        method: 'POST', 
+        body: JSON.stringify(data), 
+        headers:{'Content-Type': 'application/json'}  
+        }) 
+        .catch(error => console.error('Error status:', error));
+}
+
+function toNumTelf(numTelf) {
+    return numTelf.substring(0, 3) + numTelf.substring(4, 6) + numTelf.substring(7, 9) + numTelf.substring(10, 12);
 }
 
 function logout(event) {

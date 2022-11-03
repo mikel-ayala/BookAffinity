@@ -102,6 +102,22 @@ class usuarioModel extends usuarioClass {
         return false;
     }
 
+    public function editUser() {
+        $this->OpenConnect();
+        
+        $sql = "UPDATE usuario SET usuario = '" . $this->getUsuario() . "', email = '" . $this->getEmail() . "', telefono = '" . $this->getTelefono() . "' WHERE idUsuario = " . $this->getIdUsuario();
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
+
     public function getUser() {
         $this->OpenConnect();
         $id = $this->getIdUsuario();

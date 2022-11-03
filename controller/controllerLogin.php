@@ -26,9 +26,9 @@ if ($existe) {
     $_SESSION['userRole'] = $user->getRol();
     $_SESSION['fechaNac'] = $user->getFechaNacimiento();
 
-    $response['error'] = "No error";
+    $response['error'] = "1";
 } else {
-    $response['error'] = "Sartutako datuak ez dira zuzenak";
+    $response['error'] = "2";
 }
 
 echo json_encode($response);

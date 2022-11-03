@@ -27,9 +27,6 @@ $response['error'] = 0;
 if(!$valoracionNueva->createValoracion())
     $response['error'] = 1;
 
-
-
-
 echo json_encode($response);
 unset($response);
  

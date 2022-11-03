@@ -46,25 +46,20 @@
 #persona {
     display: flex;
     flex-direction: column;
+    width: 52%;
     margin-top: 1%;
     margin-left: 2%;
-    width: 68%;
+    margin-right: 2%;
     height: 90%;
+    font-size: 1.2em;
 }
 
 #persona * {
     width: 85%;
 }
-/*
-#titulo {
-    display: flex;
-    align-items: center;
-}
-*/
 
-#persona {
-    font-size: 1.2em;
-    width: 50%;
+#persona p {
+    margin-top: 20px;
 }
 
 .nombreApellidos {
@@ -76,19 +71,24 @@
     font-size: 2em;
 }
 
-.botonCerrarSesion {
+.buttonsPerfil {
     display: flex;
     align-self: flex-start;
-    justify-content: end;
-    margin-right: 4%;
+    flex-direction: column;
+    width: 10%;
     margin-top: 2%;
-    width: 20%;
+    margin-right: 2%;
 }
 
-.botonCerrarSesion button {
+.buttonsPerfil button {
+    width: 100%;
     border-radius: 10px;
     padding: 10px;
     font-size: 15px;
+}
+
+.buttonsPerfil .botonEditarPerfil {
+    margin-top: 5px;
 }
 
 #navegar {

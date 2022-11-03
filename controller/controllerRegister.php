@@ -39,8 +39,6 @@ if ($user->findUserByUser()) {
         $_SESSION['username'] = $user->getUsuario();
         $_SESSION['foto'] = $user->getFoto();
         $_SESSION['userRole'] = $user->getRol();
-
-        error_log($_SESSION['foto']);
     
         $response['error'] = 3;
     } else {
