@@ -9,9 +9,16 @@ function load() {
         $('#ventanaGrupos').on('click', goToGrupos);
         $('#foto').attr('src', foto);
         $('#perfil').on('click', perfil);
+        // $("#addLibro").on('click', () => {
+        //     $('.modal').css('opacity', '1');
+        //     $('.modal').css('visibility', 'visible');
+        // })
+        // $("#cerrarModal").on('click', () => {
+        //     $('.modal').css('opacity', '0');
+        //     $('.modal').css('visibility', 'none');
+        // })
     });
     $("#footer").load("./view/html/footer.html");
-    //$("#addLibro").load("./view/html/addLibro.html")
 }
 
 function preventClick(event) {

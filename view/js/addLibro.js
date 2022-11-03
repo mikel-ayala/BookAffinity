@@ -39,7 +39,5 @@ function validar(){
         booll = false;
     } 
    return booll;
-
-
 }
 
