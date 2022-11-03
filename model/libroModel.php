@@ -66,6 +66,25 @@ class libroModel extends libroClass {
         return $autores;
     }
 
+    function getTituloById(){
+
+        $this->OpenConnect();
+
+        $idLibro = $this->getIdLibro();
+        $sql="SELECT titulo FROM libro WHERE idLibro = $idLibro";
+        $result= $this->link->query($sql);
+        $titulo = '';
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+
+            $titulo = $row['titulo'];
+        }
+        mysqli_free_result($result);
+
+        $this->CloseConnect();
+        return $titulo;
+    }
+
     public function findLibrosByIdUsuario() {
         $this->OpenConnect();
         $idUsuario = $this->getIdUsuario();
@@ -91,5 +110,4 @@ class libroModel extends libroClass {
         $this->CloseConnect();
         return $libros;
     }
-
 }

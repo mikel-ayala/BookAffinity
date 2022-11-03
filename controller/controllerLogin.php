@@ -29,7 +29,6 @@ if ($existe) {
     } else {
         $response['error'] = "0";
     }
-
     $response['error'] = "1";
 } else {
     $response['error'] = "2";

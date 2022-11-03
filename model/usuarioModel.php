@@ -33,6 +33,7 @@ class usuarioModel extends usuarioClass {
             $this->setFoto($row['foto']);
             $this->setGrupo($row['grupo']);
             $this->setRol($row['rol']);
+            $this->setFechaNacimiento($row['fechaNacimiento']);
             $this->setAprobado($row['aprobado']);
             $passwordEncripted = $row['contraseina'];
             if (password_verify($this->getContraseina(), $passwordEncripted)){
@@ -103,6 +104,47 @@ class usuarioModel extends usuarioClass {
         return false;
     }
 
+    public function editUser() {
+        $this->OpenConnect();
+        
+        $sql = "UPDATE usuario SET usuario = '" . $this->getUsuario() . "', email = '" . $this->getEmail() . "', telefono = '" . $this->getTelefono() . "' WHERE idUsuario = " . $this->getIdUsuario();
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
+
+    public function getUser() {
+        $this->OpenConnect();
+        $id = $this->getIdUsuario();
+
+        $valor = false;
+        
+        $sql = "SELECT * FROM usuario WHERE idUsuario='$id'";
+        
+        $result= $this->link->query($sql);
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {         
+            $this->setUsuario($row['usuario']);
+            $this->setNombre($row['nombre']);
+            $this->setApellidos($row['apellidos']);
+            $this->setEmail($row['email']);
+            $this->setFechaNacimiento($row['fechaNacimiento']);
+            $this->setTelefono($row['telefono']);
+            $this->setInstituto($row['instituto']);
+            $this->setCurso($row['curso']);
+            $this->setGrupo($row['grupo']);
+        }
+
+        $result= $this->link->query($sql);
+        $this->CloseConnect();
+    }
+        
     public function getPendientes() {
         $this->OpenConnect();
         $grupos = $this->getGrupo();

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./view/css/generalStyles.css">
+    <link rel="stylesheet" href="./view/css/header.css">
+    <link rel="stylesheet" href="./view/css/perfil.css">
+    <link rel="stylesheet" href="./view/css/footer.css">
+    <script src="https://kit.fontawesome.com/9d49876e0a.js" crossorigin="anonymous"></script>
+    <title> | JLCLUB</title>
+<body>
+    <div id="header"></div>
+    <div id="containerPerfil">
+        <div id="containerFichaPersona">
+            <article id="fichaPersona">
+                <img id="fotoPersona" src="./view/content/fotoPersonaEjemplo.png" alt="Foto persona">
+                <article id="persona">
+                    <div id="nomUs">
+                        <h1 class="nombreApellidos">nombre y apellidos</h1>
+                        <h3 class="usuario">usuario</h3>
+                    </div>
+                    <p><b id="fechaNacimiento">fechaNacimiento</b></p>
+                    <p><b id="email">Email</b></p>
+                    <p><b id="telefono">telefono</b></p>
+                    <p id="instituto">instituto</p>
+                    <p id="curso">curso</p>
+                    <p id="grupo">grupo</p>
+                </article>
+                <div class="buttonsPerfil">
+                    <div class="botonCerrarSesion">
+                        <button id="logout" type="button">Cerrar Sesion</button>
+                    </div>
+                    <div class="botonEditarPerfil">
+                        <button id="editPerfil" type="button">Editar Perfil</button>
+                    </div>
+                </div>
+            </article>
+            <button id="navegar">
+                <b>Balorazioak</b>
+                <i class="fa-solid fa-angle-down"></i>
+            </button>
+        </div>
+        <div id="containerValoraciones">
+            <div id="headerValoraciones">
+                <h1>Balorazioak</h1>
+                <h3 id="nombreApellidosVal">Nombre Apellidos</h3>
+            </div>
+            <div class="listaValoraciones"></div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./view/js/generalScripts.js"></script>
+    <script src="./view/js/perfil.js"></script>
+</body>
+</html>

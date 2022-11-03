@@ -13,67 +13,100 @@ function load() {
 }
 
 var libros;
+let autor;
+let estrellaBusc;
+
+function filtro(event){
+
+    let librosMostrar = [];
+
+    //Filtro Formato
+    if(formatos.length == 0){
+        for(let i = 0; i < libros.length ; i++){
+            librosMostrar.push(i);
+        }
+    } else {
+        $(".formatoLibro").map((i, libro)=>{
+            for (let j = 0; j < formatos.length; j++) {
+                if(libro.textContent.toUpperCase().indexOf(formatos[j].toUpperCase())>-1){
+                    librosMostrar.push(i);
+                    break;
+                } else{
+                    librosMostrar.splice(i, 1);
+                }
+            }
+
+        });
+    }
+
+    //Filtro Autor
+    if(autor != 0 && autor != undefined){
+        let arrayAux = librosMostrar.slice(0);
+        for(let i = 0; i < librosMostrar.length; i++){
+            if($(".autorLibro")[librosMostrar[i]].textContent.toUpperCase().indexOf(autor) == -1) {
+                arrayAux.splice(arrayAux.indexOf(librosMostrar[i]), 1);
+            }
+        }
+        librosMostrar = arrayAux;
+    }
+    
+    //Filtro Estrellas
+    if(estrellaBusc != undefined && estrellaBusc.previousSibling.previousSibling.checked){
+        let arrayAux = librosMostrar.slice(0);
+        for(let i = 0; i < librosMostrar.length; i++){
+            if($(".estrellas")[librosMostrar[i]].getAttribute('value') < estrellaBusc.previousSibling.previousSibling.value) {
+                arrayAux.splice(arrayAux.indexOf(librosMostrar[i]), 1);
+            }
+        }
+        librosMostrar = arrayAux;
+    }
+    
+    //Filtro Edad
+    if($('#slider-1').val() != 5 || $('#slider-2').val() != 70){
+        let arrayAux = librosMostrar.slice(0);
+        for(let i = 0; i < librosMostrar.length; i++){
+            if(parseInt($('#slider-1').val(), 10) > parseInt($(".infoLibro")[librosMostrar[i]].getAttribute('value'), 10) 
+            || parseInt($(".infoLibro")[librosMostrar[i]].getAttribute('value'), 10) > parseInt($('#slider-2').val(), 10)){
+                arrayAux.splice(arrayAux.indexOf(librosMostrar[i]), 1);
+            }
+        }
+        librosMostrar = arrayAux;
+    }
+
+    //Mostrar los libros
+    $('.numeroLibros').text(librosMostrar.length);
+    for(let i = 0; i < libros.length; i++) {
+        if(librosMostrar.indexOf(i) > -1){
+            $('#libro'+i).show();
+        } else {
+            $('#libro'+i).hide();
+        }
+    }
+
+}
 
 function filterType(event) {
     preventClick(event);
 
     if ($(this).is(':checked')) {
         formatos.push(this.id);
-        $(".formatoLibro").map((i, libro)=>{
-            for (let j = 0; j < formatos.length; j++) {
-                if(libro.textContent.toUpperCase().indexOf(formatos[j].toUpperCase())>-1){
-                    $('#libro'+i).show();
-                    $('#libro'+i).attr("display-"+formatos[j], true)
-                }else if ($('#libro'+i).attr("display-"+formatos[j-1])){
-                    $('#libro'+i).attr("display-"+formatos[j], false)
-                }else{
-                    $('#libro'+i).hide()
-                    $('#libro'+i).attr("display-"+formatos[j], false)
-                }
-            }
-   
-        });
     } else {
         const index = formatos.indexOf(this.id);
 
         if (index > -1) { 
             formatos.splice(index, 1); 
         }
-
-        $(".formatoLibro").map((i, libro)=> {
-            if (formatos.length>0) {
-                for (let j = 0; j < formatos.length; j++) {
-                    if(libro.textContent.toUpperCase().indexOf(this.id.toUpperCase())>-1) {
-                        $('#libro'+i).hide();
-                        $('#libro'+i).attr("display-"+self.id, false);
-                    }                 
-                }
-            } else {
-                if ($('#libro'+i).attr("display-searcher")) {
-                    $('#libro'+i).show();
-                }
-                $('#libro'+i).attr("display-"+self.id, false)
-            }  
-        });
     }
+
+    filtro();
 }
 
 function filterAutor(event) {
     preventClick(event);
 
-    $(".autorLibro").map((i, libro)=>{
+    autor = this.value.toUpperCase();
 
-        if(libro.textContent.toUpperCase().indexOf(this.value.toUpperCase())>-1) {
-            $('#libro'+i).show();
-            $('#libro'+i).attr("display-autor", true);
-        } else if (this.value == "0") {
-            $('#libro'+i).show();
-            $('#libro'+i).attr("display-autor", false);
-        } else {
-            $('#libro'+i).hide();
-            $('#libro'+i).attr("display-autor", false);
-        }
-    });
+    filtro();
 }
 
 function filterStars(event) {
@@ -82,50 +115,24 @@ function filterStars(event) {
     if ($(this).data('waschecked') == true) {
         this.previousSibling.previousSibling.checked = false;
         $(this).data('waschecked', false);
-
-        $(".estrellas").map((i)=>{
-            $('#libro'+i).show();
-            $('#libro'+i).attr("display-estrella", false);
-        });
     } else {
         this.previousSibling.previousSibling.checked = true;
         $(this).data('waschecked', true);
-        $(".estrellas").map((i, libro)=> {
-            if(libro.getAttribute('value') >= this.previousSibling.previousSibling.value) {
-                $('#libro'+i).show();
-                $('#libro'+i).attr("display-estrella", true);
-            } else if (this.value == "0") {
-                $('#libro'+i).show();
-                $('#libro'+i).attr("display-estrella", false);
-            } else {
-                $('#libro'+i).hide();
-                $('#libro'+i).attr("display-estrella", false);
-            }
-        });
-
     }
+
+    estrellaBusc = this;
+
+    filtro();
 }
 
 function filterEdad(event) {
     preventClick(event);
 
-    $(".infoLibro").map((i, libro)=> {
-        if (parseInt($('#slider-1').val(), 10) <= parseInt(libro.getAttribute('value'), 10) && parseInt(libro.getAttribute('value'), 10) <= parseInt($('#slider-2').val(), 10)) {
-            $('#libro'+i).show();
-            $('#libro'+i).attr("display-edad", true);
-        } else if ($('#slider-1').val() == 5 && $('#slider-2').val() == 70) {
-            $('#libro'+i).show();
-            $('#libro'+i).attr("display-edad", false);
-        } else {
-            $('#libro'+i).hide();
-            $('#libro'+i).attr("display-edad", false);
-        }
-    });
-
+    filtro();
 }
 
 function setLibrosAprobados() {
-    let url = "controller/controllerIndex.php";
+    var url = "controller/controllerIndex.php";
 
 	fetch(url, {method: 'GET'})
         .then(res => res.json()).then(result => {
@@ -185,7 +192,7 @@ function setLibrosAprobados() {
 }
 
 function setAutores() {
-    let url = "controller/controllerAutor.php";
+    var url = "controller/controllerAutor.php";
 
     fetch(url, {method: 'GET'})
         .then(res => res.json()).then(result => {

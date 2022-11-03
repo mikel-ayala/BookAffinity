@@ -160,8 +160,7 @@ function loggin(event) {
 		body: JSON.stringify(data), 
 		headers:{'Content-Type': 'application/json'}  
 		})
-		.then(res => res.json()).then(result => {  
-			
+		.then(res => res.json()).then(result => { 
 			switch (result.error) {
 				case "0":
 					$('#msgError').html('<i class="fa-solid fa-triangle-exclamation"></i> Kontua ez dago aktibatuta horaindik')

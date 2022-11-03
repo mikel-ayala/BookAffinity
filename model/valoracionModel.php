@@ -46,6 +46,33 @@ class valoracionModel extends valoracionClass {
         return $valoraciones;
     }
 
+    public function getValoracionFromUserId() {
+        $this->OpenConnect();
+        $userId=$this->getIdUsuario();
+        $sql="SELECT * FROM valoracion WHERE idUsuario = $userId AND aprobado = 1";
+        $result= $this->link->query($sql);
+        $valoracion = new valoracionModel();
+        $valoraciones = array();
+    
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+        $valoracion->setIdValoracion($row['idValoracion']);
+            $valoracion->setIdUsuario($row['idUsuario']);
+            $valoracion->setIdLibro($row['idLibro']);
+            $valoracion->setValoracion($row['valoracion']);
+            $valoracion->setComentario($row['comentario']);
+            $valoracion->setIdioma($row['idioma']);
+            $valoracion->setEdad($row['edad']);
+            $valoracion->setAprobado($row['aprobado']);
+            $valoracion->setTituloSolicitado($row['tituloSolicitado']);
+
+            array_push($valoraciones, get_object_vars($valoracion));
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $valoraciones;
+    }
+        
+        
     public function findValoracionesByIdUsuario() { 
         $this->OpenConnect();
         $idUsuario=$this->getIdUsuario();
@@ -56,7 +83,6 @@ class valoracionModel extends valoracionClass {
     
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $valoracion = new valoracionModel();
-            
             $valoracion->setIdValoracion($row['idValoracion']);
             $valoracion->setIdUsuario($row['idUsuario']);
             $valoracion->setIdLibro($row['idLibro']);
@@ -65,6 +91,7 @@ class valoracionModel extends valoracionClass {
             $valoracion->setIdioma($row['idioma']);
             $valoracion->setEdad($row['edad']);
             $valoracion->setAprobado($row['aprobado']);
+            $valoracion->setTituloSolicitado($row['tituloSolicitado']);
 
             array_push($valoraciones, get_object_vars($valoracion));
         }
@@ -72,5 +99,23 @@ class valoracionModel extends valoracionClass {
         $this->CloseConnect();
         return $valoraciones;
     }
+    
+    public function createValoracion(){
+        $this->OpenConnect();
 
+        $sql = '';
+        if($this->getTituloSolicitado() != '')
+            $sql = "INSERT INTO `valoracion`(`idUsuario`, `idLibro`, `valoracion`, `comentario`, `idioma`, `edad`, `tituloSolicitado`) VALUES ('" . $this->getIdUsuario() . "','" . $this->getIdLibro() . "','" . $this->getValoracion() . "','" . $this->getComentario() . "','" . $this->getIdioma() . "','" . $this->getEdad() . "','" . $this->getTituloSolicitado() . "')";
+        else
+            $sql = "INSERT INTO `valoracion`(`idUsuario`, `idLibro`, `valoracion`, `comentario`, `idioma`, `edad`) VALUES ('" . $this->getIdUsuario() . "','" . $this->getIdLibro() . "','" . $this->getValoracion() . "','" . $this->getComentario() . "','" . $this->getIdioma() . "','" . $this->getEdad() . "')";
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {         
+            return true;
+        }else{
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
 }
