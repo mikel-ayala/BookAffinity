@@ -2,14 +2,16 @@ $(document).ready(load)
 
 function load() {
 
-    loggedVerify();
     $("#header").load("./view/html/header.html", () => {
+        loggedVerify();
         $('#logo').on('click', goToMain);
         $('#buscador').on('click', bookSearcher);
+        $('#ventanaGrupos').on('click', goToGrupos);
         $('#foto').attr('src', foto);
         $('#perfil').on('click', perfil);
     });
     $("#footer").load("./view/html/footer.html");
+    //$("#addLibro").load("./view/html/addLibro.html")
 }
 
 function preventClick(event) {
@@ -65,18 +67,37 @@ function perfil(event) {
     window.location.href="perfil.html"
 }
 
+function goToGrupos(event) {
+    preventClick(event)
+    window.location.href="grupo.html"
+}
+
+var admin;
+var profe;
+var grupo;
+
 function loggedVerify() {
     let url = "controller/controllerLoggedVerify.php";
     fetch(url, {
         method: 'GET'
     })
     .then(res=>res.json()).then(result=>{
+        admin = result.userRole=="admin"?true:false;
+        profe = result.userRole=="profesor"?true:false;
+        grupo = result.grupo;
+        localStorage.setItem('grupo', grupo);
+        checkRol();
         if(result.error!="logged" && !window.location.href.includes('login') ){ 
             window.location.href = "login.html";
         }else if(result.error=="logged" && window.location.href.includes('login')){
             window.location.href = "index.html";
         }
-
         $('#foto').attr('src', result.foto);
     });
+}
+
+function checkRol() {
+    if (admin == false && profe == false) {
+        $('#ventanaGrupos').hide();
+    }
 }
