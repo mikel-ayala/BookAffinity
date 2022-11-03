@@ -4,7 +4,7 @@
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        include_once("iniciarbd.php");
+        include_once("connectData.php");
 
         $titulo = $_POST["titulo"];
         $autor = $_POST["autor"];
