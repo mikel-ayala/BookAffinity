@@ -7,9 +7,12 @@ function load() {
     $('.closeModal').on('click', cerrarModal);
     $('#valorar').on('click', crearValoracion);
     $('.estrella').on('click', notaStars);
+    $('#valorar').on('click', crearValoracion);
+    $('#responder').on('click', crearRespuesta);
 }
 
 let estrellasNuevaValoracion = 0;
+let idValoracion;
 
 function mostrarInfoLibro() {
 
@@ -57,7 +60,9 @@ function mostrarInfoLibro() {
 
 function mostrarValoraciones() {
     let url1 = "controller/controllerValoracion.php"
-    let url2 = "controller/controllerUsuarioValoracion.php";
+    let url2 = "controller/controllerUsuarioValoracion.php"
+    let url3 = "controller/controllerBuscarRespuestas.php"
+    let url4 = "controller/controllerUsuarioValoracion.php"
 
 
     fetch(url1, {
@@ -66,27 +71,27 @@ function mostrarValoraciones() {
         
         let valoraciones = result.valoraciones;
         let estructura = '';
-        let estrellas;
         
         for (let i = 0; i < valoraciones.length; i++) {
+        console.log(valoraciones[i]['idUsuario']);
             switch (parseInt(valoraciones[i]['valoracion'])) {
                 case 1:
-                    estrellas = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';
+                    valoraciones[i]['estrellas'] = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';
                     break;
                 case 2:
-                    estrellas = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';               
+                    valoraciones[i]['estrellas'] = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';               
                     break;
                 case 3:
-                    estrellas = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';                
+                    valoraciones[i]['estrellas'] = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';                
                     break;
                 case 4:
-                    estrellas = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span>';                
+                    valoraciones[i]['estrellas'] = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span>';                
                     break;
                 case 5:
-                    estrellas = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span>';                
+                    valoraciones[i]['estrellas'] = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star checked"></span>';                
                     break;
                 default:
-                    estrellas = '<span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';                
+                    valoraciones[i]['estrellas'] = '<span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';                
                     break;
             };
 
@@ -98,21 +103,58 @@ function mostrarValoraciones() {
                 headers:{'Content-Type': 'application/json'}  
                 })
                 .then(res2 => res2.json()).then(result2 => {
-                    estructura = '<article class="review">' +
-                                '<img class="perfil" src="' + result2.foto + '" alt="">' +
-                                '<article class="info">' +
-                                    '<b>' + result2.usuario + '</b>' +
-                                    '<div id="estrellas">' +
-                                        estrellas +
-                                        '<b> ' + valoraciones[i]['edad'] + ' urte</b>' +
-                                    '</div>' +
-                                    '<p>' + valoraciones[i]['comentario'] + '<b> ' + valoraciones[i]['idioma'] + '</b></p>' +
-                                    '<button class="erantzuna"><b>Erantzuna eman</b></button>' +
-                                '</article>' +
-                            '</article>';
-
-                    $('#list').append(estructura);
-
+                    let data2 = {'idValoracion':valoraciones[i]['idValoracion']}
+                    fetch(url3, {
+                        method: 'POST', 
+                        body: JSON.stringify(data2), 
+                        headers:{'Content-Type': 'application/json'}  
+                        })
+                        .then(res3 => res3.json()).then(result3 => {
+                            let respuestas = result3.respuestas;
+                            let respuestasHTML = '';
+                            if(respuestas.length > 0){
+                                respuestasHTML = '<div class="buttonMostrarRespuestas" id="buttonMostrarRespuestas' + valoraciones[i]['idValoracion'] + '"><i class="fa-solid fa-sort-down"></i> <b>' + respuestas.length + ' erantzun</b> </div>' +
+                                '<div class="cajaRespuestas" id="cajaRespuestas' + valoraciones[i]['idValoracion'] + '"></div>';
+                                for(let i = 0; i < respuestas.length ; i++){
+                                    data3 = {'idUsuario':respuestas[i]['idUsuario']}
+                                    fetch(url4, {
+                                        method: 'POST', 
+                                        body: JSON.stringify(data3), 
+                                        headers:{'Content-Type': 'application/json'}  
+                                        })
+                                        .then(res4 => res4.json()).then(result4 => {
+                                            let respuesta = '<div class="cajaRespuesta">' +
+                                                                '<img class="perfil" src="' + result4.foto + '" alt="">' +
+                                                                '<article class="respuestaTexto">' + 
+                                                                    '<b>' + result4.usuario + '</b>' + 
+                                                                    '<p class="respuesta" id=' + respuestas[i]['idRespuesta'] + '>' + respuestas[i]['respuesta'] + '</p>' +
+                                                                '</article>' +
+                                                            '</div>';
+                                            $('#cajaRespuestas' + respuestas[i]['idValoracion']).append(respuesta);
+                                        }) 
+                                        .catch(error => console.error('Error status:', error));
+                                }
+                            }
+                            
+                            estructura = '<article class="review">' +
+                                        '<img class="perfil" src="' + result2.foto + '" alt="">' +
+                                        '<article class="info">' +
+                                            '<b>' + result2.usuario + '</b>' +
+                                            '<div id="estrellas">' +
+                                                valoraciones[i]['estrellas'] +
+                                                '<b> ' + valoraciones[i]['edad'] + ' urte</b>' +
+                                            '</div>' +
+                                            '<p id="comentario' + valoraciones[i]['idValoracion'] + '">' + valoraciones[i]['comentario'] + '</p><b> ' + valoraciones[i]['idioma'] + '</b>' +
+                                            '<button id="respuesta' + valoraciones[i]['idValoracion'] + '" class="erantzuna"><b>Erantzun</b></button>' +
+                                            respuestasHTML +
+                                        '</article>' +
+                                    '</article>';
+        
+                            $('#list').append(estructura);
+                            $('#respuesta' + valoraciones[i]['idValoracion']).on('click', abrirModal);
+                            $('#buttonMostrarRespuestas' + valoraciones[i]['idValoracion']).on('click', mostrarComentarios);
+                        }) 
+                        .catch(error => console.error('Error status:', error));
                 }) 
                 .catch(error => console.error('Error status:', error));
             
@@ -124,6 +166,13 @@ function mostrarValoraciones() {
 function abrirModal(event){
     preventClick(event);
 
+    if((this.id).includes('gehitu'))
+        $('#modalComentario').css("display", "block");
+    else{
+        $('#modalRespuesta').css("display", "block");
+        $('#comentarioRespuesta').text($('#comentario' + this.id.substring(9)).text());
+        idValoracion = this.id.substring(9);
+    }
     var modalBack = document.getElementById("modalBackground");
     var body = document.getElementsByTagName("body")[0];
 
@@ -146,11 +195,30 @@ function cerrarModal(event){
     body.style.position = "inherit";
     body.style.height = "auto";
     body.style.overflow = "visible";
+
 }
 
 function fondoCerrarModal(modalBack){
     var modalBack = document.getElementById("modalBackground");
     modalBack.style.display = "none";
+    document.getElementById('modalComentario').style.display = "none";
+    document.getElementById('modalRespuesta').style.display = "none";
+}
+
+function mostrarComentarios(event) {
+    preventClick(event);
+    $('#cajaRespuestas' + this.id.substring(23)).css("display", "block");
+    $(this).children('i').attr("class", $(this).children(0).attr("class").substring(0, 17) + "up");
+    $(this).off('click');
+    $(this).on('click', ocultarComentarios);
+}
+
+function ocultarComentarios(event) {
+    preventClick(event);
+    $('#cajaRespuestas' + this.id.substring(23)).css("display", "none");
+    $(this).children('i').attr("class", $(this).children(0).attr("class").substring(0, 17) + "down");
+    $(this).off('click');
+    $(this).on('click', mostrarComentarios);
 }
 
 function crearValoracion(event){
@@ -186,6 +254,35 @@ function crearValoracion(event){
     }
 
 
+}
+
+function crearRespuesta(event) {
+    preventClick(event);
+
+    if($('#respuestaVal').val().trim() != '') {
+        if($('#respuestaVal').val().trim().length < 121){
+            console.log("Entro");
+        document.getElementById("mensajeErrorRespuesta").style.display = "none";
+
+        var url = "controller/controllerNuevaRespuesta.php";
+            var data = {'idValoracion':idValoracion, 'respuesta':$('#respuestaVal').val().trim()};
+            fetch(url, {
+            method: 'POST', 
+            body: JSON.stringify(data), 
+            headers:{'Content-Type': 'application/json'}  
+            })
+            .then(res => res.json()).then(result => {
+                window.location.reload();
+            })
+            .catch(error => console.error('Error status:', error));
+        } else {
+            $("#mensajeErrorRespuesta").text("Erantzuna luzeegia da");
+            document.getElementById("mensajeErrorRespuesta").style.display = "block";
+        }
+    } else {
+        $("#mensajeErrorRespuesta").text("Erantzuna sartu");
+        document.getElementById("mensajeErrorRespuesta").style.display = "block";
+    }
 }
 
 function notaStars(event) {

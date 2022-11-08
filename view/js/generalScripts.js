@@ -6,7 +6,6 @@ function load() {
     $("#header").load("./view/html/header.html", () => {
         $('#logo').on('click', goToMain);
         $('#buscador').on('click', bookSearcher);
-        $('#foto').attr('src', foto);
         $('#perfil').on('click', perfil);
     });
     $("#footer").load("./view/html/footer.html");

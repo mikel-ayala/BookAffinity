@@ -109,7 +109,7 @@ function editPerfil() {
     let telefono = document.getElementById('telefono');
 
     if(primeraVezEdit){
-        $('#editPerfil').text("Guardar");
+        $('#editPerfil').text("Gorde");
         $('#editPerfil').css("background-color", "red");
 
         usuario.style.display = "none";
@@ -137,24 +137,28 @@ function editPerfil() {
 
         primeraVezEdit = false;
     } else {
-        $('#editPerfil').text("Editar perfil");
-        $('#editPerfil').css("background-color", "#3386FF"); 
-        
-        editarUsuarioBD();
+        if(compNumTelf()){
+            $('#editPerfil').text("Profila Editatu");
+            $('#editPerfil').css("background-color", "#3386FF"); 
+            
+            editarUsuarioBD();
 
-        $(".usuario").text($('#editUsuarioInput').val());
-        $("#email").text($('#editEmailInput').val());
-        $("#telefono").text($('#editTelefonoInput').val());
-        
-        usuario.style.display = "block";
-        email.style.display = "block";
-        telefono.style.display = "block";
+            $(".usuario").text($('#editUsuarioInput').val());
+            $("#email").text($('#editEmailInput').val());
+            $("#telefono").text($('#editTelefonoInput').val());
+            
+            usuario.style.display = "block";
+            email.style.display = "block";
+            telefono.style.display = "block";
 
-        document.getElementById('editUsuarioInput').remove();
-        document.getElementById('editEmailInput').remove();
-        document.getElementById('editTelefonoInput').remove();
+            document.getElementById('editUsuarioInput').remove();
+            document.getElementById('editEmailInput').remove();
+            document.getElementById('editTelefonoInput').remove();
 
-        primeraVezEdit = true;
+            primeraVezEdit = true;
+        } else {
+            alert("Telefono zenbakia ondo idatzi mesedez");
+        }
     }
     
 }
@@ -172,7 +176,31 @@ function editarUsuarioBD(){
 }
 
 function toNumTelf(numTelf) {
-    return numTelf.substring(0, 3) + numTelf.substring(4, 6) + numTelf.substring(7, 9) + numTelf.substring(10, 12);
+    let regexNums = /^[0-9]+$/;
+    numero = numTelf.split('');
+    numReturn = '';
+    for(let i = 0; i < numero.length; i++){
+        if(numero[i].match(regexNums))
+            numReturn += numero[i];
+    }
+    return numReturn;
+}
+
+function compNumTelf(){
+    let regexNums = /^[0-9]+$/;
+    let numTelf = $('#editTelefonoInput').val().split('');
+    let contnums = 0;
+    for(let i = 0; i < numTelf.length; i++) {
+        if(numTelf[i] == ' ' || numTelf[i].match(regexNums)) {
+            if(numTelf[i].match(regexNums))
+                contnums++;
+        } else
+            return false;
+    }
+    if(contnums != 9)
+        return false;
+    else
+        return true;
 }
 
 function logout(event) {
