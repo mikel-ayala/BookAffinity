@@ -1,3 +1,34 @@
+$(document).ready(load);
+
+function load(){
+    $("#modalitosupare").load("index.html", () => {
+        $('#cerrarModal').on('click', cerrarModal);
+    });
+    $('#iniciador').on('click', addLibro);
+}
+
+function preventClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+}
+
+function abrirModal(event) {
+    preventClick(event)
+
+    $('.modal').css('opacity', '1');
+    $('.modal').css('visibility', 'visible');
+    $(".contenedor").css('transform', 'translateY(7%)');
+}
+
+function cerrarModal(event) {
+    preventClick(event)
+
+    $('.modal').css('opacity', '0');
+    $('.modal').css('visibility', 'hidden');
+    $(".contenedor").css('transform', 'translateY(0%)');
+}
+
+
 
 document.getElementById("boton").addEventListener("click",validar);
 
