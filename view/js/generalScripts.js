@@ -14,6 +14,8 @@ function load() {
     //$("#addLibro").load("./view/html/addLibro.html")
 }
 
+let userId = -1;
+
 function preventClick(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -34,7 +36,7 @@ function bookSearcher(event) {
         }
 
 
-       $(".checkboxFormato").map((i, checkbox)=>{
+        $(".checkboxFormato").map((i, checkbox)=>{
             $('#'+checkbox.id).prop('checked', false)
             $('#'+checkbox.id).next().next().removeClass('grey');
         });
@@ -82,6 +84,7 @@ function loggedVerify() {
         method: 'GET'
     })
     .then(res=>res.json()).then(result=>{
+        userId = result['userId'];
         admin = result.userRole=="admin"?true:false;
         profe = result.userRole=="profesor"?true:false;
         grupo = result.grupo;

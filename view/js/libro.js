@@ -1,7 +1,7 @@
 $(document).ready(load)
 
 function load() {
-    mostrarInfoLibro(), mostrarValoraciones();
+    mostrarInfoLibro(), setTimeout( mostrarValoraciones, 10);
     $('#navegar').on('click', scrollear);
     $('#gehitu').on('click', abrirModal);
     $('.closeModal').on('click', cerrarModal);
@@ -73,7 +73,9 @@ function mostrarValoraciones() {
         let estructura = '';
         
         for (let i = 0; i < valoraciones.length; i++) {
-        console.log(valoraciones[i]['idUsuario']);
+            if(valoraciones[i]['idUsuario'] == userId) {
+                $('#newReview').css('display', 'none');
+            }
             switch (parseInt(valoraciones[i]['valoracion'])) {
                 case 1:
                     valoraciones[i]['estrellas'] = '<span class="fa-solid fa-star checked"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span><span class="fa-solid fa-star"></span>';
