@@ -55,7 +55,34 @@ class valoracionModel extends valoracionClass {
         $valoraciones = array();
     
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            
+        $valoracion->setIdValoracion($row['idValoracion']);
+            $valoracion->setIdUsuario($row['idUsuario']);
+            $valoracion->setIdLibro($row['idLibro']);
+            $valoracion->setValoracion($row['valoracion']);
+            $valoracion->setComentario($row['comentario']);
+            $valoracion->setIdioma($row['idioma']);
+            $valoracion->setEdad($row['edad']);
+            $valoracion->setAprobado($row['aprobado']);
+            $valoracion->setTituloSolicitado($row['tituloSolicitado']);
+
+            array_push($valoraciones, get_object_vars($valoracion));
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $valoraciones;
+    }
+        
+        
+    public function findValoracionesByIdUsuario() { 
+        $this->OpenConnect();
+        $idUsuario=$this->getIdUsuario();
+
+        $sql="SELECT * FROM valoracion WHERE idUsuario=$idUsuario AND aprobado=0";
+        $result= $this->link->query($sql);
+        $valoraciones = array();
+    
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $valoracion = new valoracionModel();
             $valoracion->setIdValoracion($row['idValoracion']);
             $valoracion->setIdUsuario($row['idUsuario']);
             $valoracion->setIdLibro($row['idLibro']);
@@ -72,7 +99,7 @@ class valoracionModel extends valoracionClass {
         $this->CloseConnect();
         return $valoraciones;
     }
-
+    
     public function createValoracion(){
         $this->OpenConnect();
 
@@ -91,5 +118,4 @@ class valoracionModel extends valoracionClass {
         $this->CloseConnect(); 
         return false;
     }
-
 }

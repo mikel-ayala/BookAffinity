@@ -4,11 +4,9 @@
     margin: 0;
     padding: 0;
 	font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
 }
 
-html, body {
-    overflow: auto;
-}
 
 body {
     display: flex;
@@ -29,6 +27,14 @@ button {
     border: 0;
     border-radius: 2%;
     cursor: pointer;
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:focus {
+	outline: none;
 }
 
 .checked {

@@ -19,13 +19,16 @@ $response = array();
 $response['user'] = $user;
 
 if ($existe) {
-    session_start();
-    $_SESSION['userId'] = $user->getIdUsuario();
-    $_SESSION['username'] = $user->getUsuario();
-    $_SESSION['foto'] = $user->getFoto();
-    $_SESSION['userRole'] = $user->getRol();
-    $_SESSION['fechaNac'] = $user->getFechaNacimiento();
-
+    if ($user->getAprobado() == 1) {
+        session_start();
+        $_SESSION['userId'] = $user->getIdUsuario();
+        $_SESSION['username'] = $user->getUsuario();
+        $_SESSION['foto'] = $user->getFoto();
+        $_SESSION['grupo'] = $user->getGrupo();
+        $_SESSION['userRole'] = $user->getRol();
+    } else {
+        $response['error'] = "0";
+    }
     $response['error'] = "1";
 } else {
     $response['error'] = "2";
