@@ -1,11 +1,12 @@
 <div class="modal">
 	<div class="contenedor">
 		<header>
-			<H3>LIBURUA GEHIARAZI</H3>
+			<div id="hh">
+				<H3>LIBURUA GEHIARAZI</H3>
+				<button id="cerrarModal"><b>X</b></button>
+			</div>
 		</header>
-		<label id="cerrarModal" for="btn-modal">X</label>
 		<div class="contenido">
-
 			<center><label for="error" id="errorlbl"></label></center>
 
 			<div id="sub1">
@@ -18,7 +19,8 @@
 					<label for="errorautor" id="autor" class="error"></label>
 					<br>
 					<br>
-					<input type="file" name="foto" class="selector" placeholder="Portada" accept="image/png, image/jpgeg, image/jpg" required id="foto">
+					<input type="file" name="foto" class="selector" placeholder="Portada"
+						accept="image/png, image/jpgeg, image/jpg" required id="foto">
 					<label for="errorfoto" id="errorfoto" class="error"></label>
 			</div>
 			<div id="sub2">
@@ -51,5 +53,11 @@
 			<center><input type="submit" name="enviar" value="BIDALI" id="boton"></center>
 		</div>
 		</form>
+
+
+
+
+
 	</div>
+</div>
 </div>
