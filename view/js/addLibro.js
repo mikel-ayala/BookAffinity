@@ -1,7 +1,7 @@
 $(document).ready(load);
 
 function load(){
-    $("#modalitosupare").load("index.html", () => {
+    $("#modalitosupare").load("addLibro.html", () => {
         $('#cerrarModal').on('click', cerrarModal);
     });
     $('#addLibro').on('click', abrirModal);
