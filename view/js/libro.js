@@ -74,7 +74,9 @@ function mostrarValoraciones() {
         
         for (let i = 0; i < valoraciones.length; i++) {
             if(valoraciones[i]['idUsuario'] == userId) {
-                $('#newReview').css('display', 'none');
+                $('#gehitu').prop('disabled', true);
+                $('#gehitu').css('background-color', 'grey');
+                $('#gehitu').css('border-color', 'grey');
             }
             switch (parseInt(valoraciones[i]['valoracion'])) {
                 case 1:
@@ -179,7 +181,8 @@ function abrirModal(event){
     var body = document.getElementsByTagName("body")[0];
 
     modalBack.style.display = "block";
-    $('#myModal').slideToggle("slow");
+    $('#myModal').css('display', 'block');
+    //$('#myModal').slideToggle("slow");
 
     body.style.position = "static";
     body.style.height = "100%";
