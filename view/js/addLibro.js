@@ -4,7 +4,7 @@ function load(){
     $("#modalitosupare").load("index.html", () => {
         $('#cerrarModal').on('click', cerrarModal);
     });
-    $('#iniciador').on('click', addLibro);
+    $('#addLibro').on('click', abrirModal);
 }
 
 function preventClick(event) {
