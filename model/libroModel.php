@@ -110,4 +110,36 @@ class libroModel extends libroClass {
         $this->CloseConnect();
         return $libros;
     }
+
+    public function setLibroAprobado() {
+        $this->OpenConnect();
+        
+        $sql = "UPDATE libro SET aprobado=1 WHERE idLibro = " . $this->getIdLibro();
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
+
+    public function deleteLibro() {
+        $this->OpenConnect();
+        
+        $sql = "DELETE FROM libro WHERE idLibro = " . $this->getIdLibro();
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
 }

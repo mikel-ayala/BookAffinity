@@ -1,55 +1,8 @@
-<div class="modal">
-	<div class="contenedor">
-		<header>
-			<H3>LIBURUA GEHIARAZI</H3>
-		</header>
-		<label id="cerrarModal" for="btn-modal">X</label>
-		<div class="contenido">
-
-			<center><label for="error" id="errorlbl"></label></center>
-
-			<div id="sub1">
-				<form action="index.php" method="POST">
-					<input type="text" name="titulo" class="texto" placeholder="Titulua" id="titulo" required>
-					<label for="errortitulo" id="errortitulo" class="error"></label>
-					<br>
-					<br>
-					<input type="text" name="autor" class="texto" placeholder="Autorea" id="autor" required>
-					<label for="errorautor" id="autor" class="error"></label>
-					<br>
-					<br>
-					<input type="file" name="foto" class="selector" placeholder="Portada" accept="image/png, image/jpgeg, image/jpg" required id="foto">
-					<label for="errorfoto" id="errorfoto" class="error"></label>
-			</div>
-			<div id="sub2">
-				<input type="text" name="formato" class="texto" placeholder="Formatua" id="formato" required>
-				<label for="errorformato" id="errorformato" class="error"></label>
-				<br>
-				<br>
-				<input type="text" name="sinopsis" class="texto" placeholder="Sinopsia" id="sinopsis" required>
-				<label for="errorsinopsis" id="errorsinopsis" class="error"></label>
-				<br>
-				<br>
-				<select name="idioma" class="selector" aria-placeholder="Hizkuntza" id="idioma" required>
-					<option value="Euskerea">Euskeraz</option>
-					<option value="Castellano">Gazteleraz</option>
-					<option value="Ingles">Ingeleraz</option>
-					<option value="Frances">Frantzesaz</option>
-					<option value="Aleman">Alemanieraz</option>
-					<option value="Arabe">Arabieraz</option>
-					<option value="Catalan">Katalanaz</option>
-					<option value="Ukraniano">Ukranieraz</option>
-					<option value="Japones">Japonieraz</option>
-				</select>
-				<label for="erroridioma" id="erroridioma" class="error"></label>
-			</div>
-		</div>
-		<br>
-		<br>
-		<br>
-		<div id="cajabtn">
-			<center><input type="submit" name="enviar" value="BIDALI" id="boton"></center>
-		</div>
-		</form>
-	</div>
-</div>
+<form id="libroForm" action="#">
+	<h1>Liburua Gehiarazi</h1>
+	<p id="msgError" class="warn"></p>
+	<input type="text" placeholder="Erabiltzailea" id="usuarioLogin" />
+	<input type="password" placeholder="Pasahitza" id="contraseinaLogin"/>
+	<a href="#">Pasahitza ahaztu duzu?</a>
+	<button type="button" id="login">Sartu</button>
+</form>

@@ -118,4 +118,36 @@ class valoracionModel extends valoracionClass {
         $this->CloseConnect(); 
         return false;
     }
+
+    public function setValoracionAprobado() {
+        $this->OpenConnect();
+        
+        $sql = "UPDATE valoracion SET aprobado=1 WHERE idValoracion = " . $this->getIdValoracion();
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
+
+    public function deleteValoracion() {
+        $this->OpenConnect();
+        
+        $sql = "DELETE FROM valoracion WHERE idValoracion = " . $this->getIdValoracion();
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
 }
