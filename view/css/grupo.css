@@ -226,6 +226,15 @@ button.active {
     align-self: center;
 }
 
+.registro .infoValoracion {
+    align-self: center;
+    width: 28.5%;
+}
+
+.registro .infoValoracion p {
+    width: auto;
+}
+
 .registro .sinopsis {
     width: 60%;
     height: 100%;

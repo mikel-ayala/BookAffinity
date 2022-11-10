@@ -7,11 +7,14 @@ function load() {
         $('#logo').on('click', goToMain);
         $('#buscador').on('click', bookSearcher);
         $('#ventanaGrupos').on('click', goToGrupos);
-        $('#foto').attr('src', foto);
         $('#perfil').on('click', perfil);
+        $("#addLibroModal").load("./view/html/addLibro.html", () => {
+            $('#cerrarModal').on('click', cerrarModal);
+            $("#boton").on("click", validar);
+        });
+        $('#addLibro').on('click', abrirModal);
     });
     $("#footer").load("./view/html/footer.html");
-    //$("#addLibro").load("./view/html/addLibro.html")
 }
 
 let userId = -1;
@@ -74,21 +77,22 @@ function goToGrupos(event) {
     window.location.href="grupo.html"
 }
 
-var admin;
-var profe;
-var grupo;
-
 function loggedVerify() {
     let url = "controller/controllerLoggedVerify.php";
     fetch(url, {
         method: 'GET'
     })
-    .then(res=>res.json()).then(result=>{
-        userId = result['userId'];
-        admin = result.userRole=="admin"?true:false;
-        profe = result.userRole=="profesor"?true:false;
-        grupo = result.grupo;
-        localStorage.setItem('grupo', grupo);
+    .then(res=>res.json()).then(result=> {
+        result.userRole=="admin"?localStorage.setItem('rol', result.userRole):false;
+        result.userRole=="profesor"?localStorage.setItem('rol', result.userRole):false;
+
+        if (result.userRole == "admin" || result.userRole == "profesor") {
+            localStorage.setItem('rol', result.userRole);
+        } else {
+            localStorage.setItem('rol', 'alumno');
+        }
+
+        localStorage.setItem('grupo', result.grupo);
         checkRol();
         if(result.error!="logged" && !window.location.href.includes('login') ){ 
             window.location.href = "login.html";
@@ -100,7 +104,45 @@ function loggedVerify() {
 }
 
 function checkRol() {
-    if (admin == false && profe == false) {
+    if (localStorage.getItem('rol') != "admin" && localStorage.getItem('rol') != "profesor") {
         $('#ventanaGrupos').hide();
     }
+}
+
+function abrirModal(event) {
+    preventClick(event)
+
+    $('body').css('overflow', 'hidden');
+    $('#addLibroModal').css('display', 'flex');
+    delay(50).then(() => $("#libroForm").css('transform', 'translateY(0%)'));
+}
+
+function cerrarModal(event) {
+    preventClick(event)
+
+    $('body').css('overflow', 'scroll');
+    $('#addLibroModal').css('display', 'none');
+    $("#libroForm").css('transform', 'translateY(-30%)');
+}
+
+function validar() {
+
+    let libro = {
+        'titulo':$('#tituloModal').val(),
+        'autor':$('#autorModal').val(),
+        'foto':$('#fotoModal').val(),
+        'formato':$('#formatoModal').val(),
+        'sinopsis':$('#sinopsisModal').val(),
+        'idioma':$('#idiomaModal').val()
+    }
+
+    if (libro['titulo'] && libro['autor'] && libro['foto'] && libro['formato'] && libro['sinopsis'] && libro['idioma']) {
+
+    } else {
+        $('#errorlbl').html('Datu guztiak bete');
+    }
+}
+
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
 }

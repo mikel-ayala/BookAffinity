@@ -145,7 +145,7 @@ class usuarioModel extends usuarioClass {
         $this->CloseConnect();
     }
         
-    public function getPendientes() {
+    public function getAlumnosPendientes() {
         $this->OpenConnect();
         $grupos = $this->getGrupo();
         $grupo = str_replace(", ", "','", $grupos);
@@ -178,6 +178,68 @@ class usuarioModel extends usuarioClass {
         return $pendientes;
     }
 
+    public function getProfesoresPendientes() {
+        $this->OpenConnect();
+
+        $sql = "SELECT * FROM usuario WHERE rol='profesor' AND aprobado=0";
+        $result= $this->link->query($sql);
+
+        $pendientes = array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $usuario = new usuarioModel();
+            
+            $usuario->setIdUsuario($row['idUsuario']);
+            $usuario->setNombre($row['nombre']);
+            $usuario->setApellidos($row['apellidos']);
+            $usuario->setUsuario($row['usuario']);
+            $usuario->setFechaNacimiento($row['fechaNacimiento']);
+            $usuario->setEmail($row['email']);
+            $usuario->setTelefono($row['telefono']);
+            $usuario->setInstituto($row['instituto']);
+            $usuario->setCurso($row['curso']);
+            $usuario->setAino($row['aino']);
+            $usuario->setFoto($row['foto']);
+            $usuario->setGrupo($row['grupo']);
+
+            array_push($pendientes, get_object_vars($usuario));
+        }
+        
+        $this->CloseConnect(); 
+        return $pendientes;
+    }
+
+    public function getProfesores() {
+        $this->OpenConnect();
+
+        $sql = "SELECT * FROM usuario WHERE rol='profesor'";
+        $result= $this->link->query($sql);
+
+        $profesores = array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $usuario = new usuarioModel();
+            
+            $usuario->setIdUsuario($row['idUsuario']);
+            $usuario->setNombre($row['nombre']);
+            $usuario->setApellidos($row['apellidos']);
+            $usuario->setUsuario($row['usuario']);
+            $usuario->setFechaNacimiento($row['fechaNacimiento']);
+            $usuario->setEmail($row['email']);
+            $usuario->setTelefono($row['telefono']);
+            $usuario->setInstituto($row['instituto']);
+            $usuario->setCurso($row['curso']);
+            $usuario->setAino($row['aino']);
+            $usuario->setFoto($row['foto']);
+            $usuario->setGrupo($row['grupo']);
+
+            array_push($profesores, get_object_vars($usuario));
+        }
+        
+        $this->CloseConnect(); 
+        return $profesores;
+    }
+
     public function findUsersByGroup() {
         $this->OpenConnect();
         $grupo = $this->getGrupo();
@@ -208,5 +270,56 @@ class usuarioModel extends usuarioClass {
         
         $this->CloseConnect(); 
         return $usuarios;
+    }
+
+    public function addGrupo() {
+        $this->OpenConnect();
+        $idUsuario = $this->getIdUsuario();
+        $grupo = $this->getGrupo();
+        $sql = "UPDATE usuario SET grupo='$grupo' WHERE idUsuario=$idUsuario";
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
+
+    public function setUsuarioAprobado() {
+        $this->OpenConnect();
+        $idUsuario = $this->getIdUsuario();
+
+        $sql = "UPDATE usuario SET aprobado=1 WHERE idUsuario=$idUsuario";
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
+
+    public function deleteUsuario() {
+        $this->OpenConnect();
+        $idUsuario = $this->getIdUsuario();
+
+        $sql = "DELETE FROM usuario WHERE idUsuario=$idUsuario";
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
     }
 }
