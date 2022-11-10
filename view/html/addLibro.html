@@ -1,8 +1,26 @@
-<form id="libroForm" action="#">
-	<h1>Liburua Gehiarazi</h1>
-	<p id="msgError" class="warn"></p>
-	<input type="text" placeholder="Erabiltzailea" id="usuarioLogin" />
-	<input type="password" placeholder="Pasahitza" id="contraseinaLogin"/>
-	<a href="#">Pasahitza ahaztu duzu?</a>
-	<button type="button" id="login">Sartu</button>
-</form>
+<div id="libroForm">
+	<aside>
+		<h1>Liburua Gehiarazi</h1>
+		<button id="cerrarModal"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
+	</aside>
+	<section>
+		<input type="text" placeholder="Izenburua" id="tituloModal" />
+		<input type="text" placeholder="Idazlea" id="autorModal"/>
+		<input type="text" placeholder="Formatua" id="formatoModal" />
+		<select name="idiomaModal" id="idiomaModal">
+			<option value="Euskera">Euskeraz</option>
+			<option value="Castellano">Gazteleraz</option>
+			<option value="Ingles">Ingeleraz</option>
+			<option value="Frances">Frantzesaz</option>
+			<option value="Aleman">Alemanieraz</option>
+			<option value="Arabe">Arabieraz</option>
+			<option value="Catalan">Katalanaz</option>
+			<option value="Ukraniano">Ukranieraz</option>
+			<option value="Japones">Japonieraz</option>
+		</select>
+		<input type="file" placeholder="Argazkia" id="fotoModal" name="fotoModal"  accept="image/png, image/jpeg, image/jpg">
+		<textarea placeholder="Sinopsia" id="sinopsisModal"></textarea>
+	</section>
+	<p id="msgError"></p>
+	<button id="confirmarLibroModal">Sartu</button>
+</div>

@@ -10,7 +10,7 @@ function load() {
         $('#perfil').on('click', perfil);
         $("#addLibroModal").load("./view/html/addLibro.html", () => {
             $('#cerrarModal').on('click', cerrarModal);
-            $("#boton").on("click", validar);
+            $("#confirmarLibroModal").on("click", validar);
         });
         $('#addLibro').on('click', abrirModal);
     });
@@ -130,16 +130,53 @@ function validar() {
     let libro = {
         'titulo':$('#tituloModal').val(),
         'autor':$('#autorModal').val(),
-        'foto':$('#fotoModal').val(),
+        'foto':$('#fotoModal').prop("files")[0],
         'formato':$('#formatoModal').val(),
         'sinopsis':$('#sinopsisModal').val(),
         'idioma':$('#idiomaModal').val()
     }
 
     if (libro['titulo'] && libro['autor'] && libro['foto'] && libro['formato'] && libro['sinopsis'] && libro['idioma']) {
+        $('#msgError').html('');
+        $('#tituloModal').val('');
+        $('#autorModal').val('');
+        $('#fotoModal').val('');
+        $('#formatoModal').val('');
+        $('#sinopsisModal').val('');
+        $('#idiomaModal').val('Euskera');
+
+        let formData = new FormData();
+
+        formData.append('file', $('#fotoModal').prop("files")[0]);
+        //formData.append('libro', libro);
+
+        // url = "controller/controllerAddLibro.php";
+
+        // fetch(url, {
+        //     method: 'POST', 
+        //     data: formData,
+        //     headers:{'Content-Type': false}  
+        // })
+        // .then(res => res.json()).then(result => {
+        //     cerrarModal();
+        // })
+        // .catch(error => console.error('Error status:', error));
+
+        $.ajax({
+            url: 'controller/controllerAddLibro.php', // <-- point to server-side PHP script 
+            dataType: 'text',  // <-- what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,                         
+            type: 'post',
+            success: function(php_script_response){
+                alert(php_script_response); // <-- display response from the PHP script, if any
+            }
+         });
 
     } else {
-        $('#errorlbl').html('Datu guztiak bete');
+        $('#msgError').html('<i class="fa-solid fa-triangle-exclamation"></i> Datu guztiak bete');
     }
 }
 

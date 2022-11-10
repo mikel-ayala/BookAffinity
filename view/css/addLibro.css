@@ -1,111 +1,64 @@
 #libroForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	width: 40vw;
-	height: 60vh;
+	height: 65vh;
+	gap: 3%;
 	background: #fff;
 	box-shadow: 1px 7px 25px rgba(0,0,0,0.6);
 	transition: all 500ms ease;
 	transform: translateY(-30%);
+	border-radius: 20px;
 }
 
-.contenedor header{
+#libroForm aside {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 15%;
 	padding: 10px;
 	background: #3386FF;
 	color: #fff;
+	border-radius: 20px 20px 0 0;
 }
-.contenedor label{
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	color: #fff;
-	font-size: 15px;
-	cursor: pointer;
+
+#libroForm aside h1 {
+	margin: 0 0 0 5%;
 }
-.contenido{
-	width: 100%;
-	padding: 10px; 
+
+#libroForm section {
 	display: flex;
-	justify-content: space-around;
-	align-content: center;
-}
-.contenido h3{
-	margin-bottom: 10px;
-}
-
-#btn-modal{
-	display: none;
-	
-}
-.lbl-modal{
-	background: #fff;
-	padding: 10px 15px;
-	border-radius: 4px;
-	cursor: pointer;
-}
-@media only screen and (min-width:320px) and (max-width:768px){
-	.contenedor{
-		width: 95%;
-	}
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 4%;
+	width: 100%;
+	height: 55%;
+	box-sizing: border-box;
 }
 
-.texto{
-
+#libroForm section input[type='text'], input[type='file'], textarea, #idiomaModal {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
-	width: 100%;
-	
+	width: 40%;
+	height: 15%;
 }
 
-.texto:focus{
-
-	background-color: white;
-}
-
-#boton{
-
-	text-align: center;
-	border-radius: 20px;
-	border: 1px solid #3386FF;
-	background-color: #3386FF;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	transition: transform 80ms ease-in;
-}
-
-#boton:hover{
-
-	background-color: #075bdb;
-
-}
-
-.selector{
-
-	width: 100%;
-	padding: 12px 15px;
-	border: none;
-	background-color: #eee;
-	margin: 8px 0;
-	cursor: pointer;
-
-}
-
-.selector:focus{
-
-	background-color: white;
-	border:2px black solid ;
-	border-radius: 5px;
-}
-
-.error{
-
+#libroForm #msgError {
 	color: red;
+	text-align: center;
+	font-size: small;
+	height: 5%;
 }
 
+#libroForm #confirmarLibroModal {
+	width: 20%;
+	height: 10%;
+	border-radius: 20px;
+}
 
 
 
