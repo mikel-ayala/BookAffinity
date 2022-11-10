@@ -10,6 +10,7 @@ function load() {
     $('#select').on('change', filterAutor);
     $('.estrella').on('click', filterStars);
     $('.slider').on('input', filterEdad);
+    //$("#addLibroModal").load("./view/html/addLibro.html")
 }
 
 var libros;

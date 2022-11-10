@@ -8,7 +8,7 @@ $response = array();
 
 if (isset($_SESSION['grupo'])) {
     $pendientes->setGrupo($_SESSION['grupo']);
-    $response['pendientes'] = $pendientes->getPendientes();
+    $response['pendientes'] = $pendientes->getAlumnosPendientes();
     $response['error'] = false;
 } else {
     $response['error'] = true;
