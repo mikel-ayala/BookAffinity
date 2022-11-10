@@ -181,8 +181,7 @@ function abrirModal(event){
     var body = document.getElementsByTagName("body")[0];
 
     modalBack.style.display = "block";
-    $('#myModal').css('display', 'block');
-    //$('#myModal').slideToggle("slow");
+    $('#myModal').slideToggle("slow");
 
     body.style.position = "static";
     body.style.height = "100%";

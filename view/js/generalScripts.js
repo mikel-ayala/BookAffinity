@@ -83,6 +83,7 @@ function loggedVerify() {
         method: 'GET'
     })
     .then(res=>res.json()).then(result=> {
+        userId = result['userId']
         result.userRole=="admin"?localStorage.setItem('rol', result.userRole):false;
         result.userRole=="profesor"?localStorage.setItem('rol', result.userRole):false;
 
