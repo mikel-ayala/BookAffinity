@@ -92,7 +92,7 @@ function mostrarValoraciones() {
                                         valoraciones[i]['estrellas'] +
                                         '<b> ' + valoraciones[i]['edad'] + ' urte</b>' +
                                     '</div>' +
-                                    '<p>' + valoraciones[i]['comentario'] + '<b> ' + valoraciones[i]['idioma'] + '</b></p>' +
+                                    '<p class="comentario">' + valoraciones[i]['comentario'] + '<b> ' + valoraciones[i]['idioma'] + '</b></p>' +
                                 '</article>';
                     $('.listaValoraciones').append(estructura);
                 }) 
