@@ -51,7 +51,7 @@ function mostrarInfoLibro() {
         };
         $("#formato").text(libroSeleccionado['formato'].toUpperCase());
         $("#sinopsis").text(libroSeleccionado['sinopsis']);
-        $(".numeroLectores").text(libroSeleccionado['numeroLectores']);
+        $(".numeroLectores").text(libroSeleccionado['numeroLectores'] + " Iriztiak");
         $("#edadMedia").text(libroSeleccionado['edadMedia']);
         $("#tituloIdiomas").text(libroSeleccionado['tituloIdiomas']);
         
@@ -148,7 +148,7 @@ function mostrarValoraciones() {
                                                 valoraciones[i]['estrellas'] +
                                                 '<b> ' + valoraciones[i]['edad'] + ' urte</b>' +
                                             '</div>' +
-                                            '<p id="comentario' + valoraciones[i]['idValoracion'] + '">' + valoraciones[i]['comentario'] + '</p><b> ' + valoraciones[i]['idioma'] + '</b>' +
+                                            '<p class="comentario" id="comentario' + valoraciones[i]['idValoracion'] + '">' + valoraciones[i]['comentario'] + '</p><b> ' + valoraciones[i]['idioma'] + '</b>' +
                                             '<button id="respuesta' + valoraciones[i]['idValoracion'] + '" class="erantzuna"><b>Erantzun</b></button>' +
                                             respuestasHTML +
                                         '</article>' +
@@ -181,8 +181,7 @@ function abrirModal(event){
     var body = document.getElementsByTagName("body")[0];
 
     modalBack.style.display = "block";
-    $('#myModal').css('display', 'block');
-    //$('#myModal').slideToggle("slow");
+    $('#myModal').slideToggle("slow");
 
     body.style.position = "static";
     body.style.height = "100%";
