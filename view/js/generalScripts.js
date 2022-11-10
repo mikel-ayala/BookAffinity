@@ -17,6 +17,8 @@ function load() {
     $("#footer").load("./view/html/footer.html");
 }
 
+let userId = -1;
+
 function preventClick(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -37,7 +39,7 @@ function bookSearcher(event) {
         }
 
 
-       $(".checkboxFormato").map((i, checkbox)=>{
+        $(".checkboxFormato").map((i, checkbox)=>{
             $('#'+checkbox.id).prop('checked', false)
             $('#'+checkbox.id).next().next().removeClass('grey');
         });
