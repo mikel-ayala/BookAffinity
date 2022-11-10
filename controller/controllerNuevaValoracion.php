@@ -22,6 +22,8 @@ $valoracionNueva->setComentario($comentario);
 $valoracionNueva->setIdLibro($libroId);
 $valoracionNueva->setTituloSolicitado($tituloAlt);
 
+$_SESSION['userRole']=="alumno"?$valoracionNueva->setAprobado(0):$valoracionNueva->setAprobado(1);
+
 $response = array();
 $response['error'] = 0;
 if(!$valoracionNueva->createValoracion())

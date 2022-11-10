@@ -10,7 +10,6 @@ function load() {
     $('#select').on('change', filterAutor);
     $('.estrella').on('click', filterStars);
     $('.slider').on('input', filterEdad);
-    //$("#addLibroModal").load("./view/html/addLibro.html")
 }
 
 var libros;
@@ -170,7 +169,7 @@ function setLibrosAprobados() {
                         break;
                 };
 
-                htmlList += '<article id="libro'+i+'" class="libro" onclick="cambiarPagina(' + libros[i]["idLibro"] + ')">' +
+                htmlList += '<article id="libro'+i+'" class="libro" onclick="cambiarPagina(' + i + ')">' +
                     '<img src="./view/content/portadas/' + libros[i]["foto"] + '" alt="">' +
                     '<div class="infoLibro" value="' + libros[i]["edadMedia"] + '">' + 
                         '<h2 id="title'+i+'" class="tituloLibro">' + libros[i]["titulo"] + '</h2>' +
@@ -212,10 +211,10 @@ function setAutores() {
 
 
 function cambiarPagina(id) {
-    let libroSeleccionado = libros[id-1];
+    let libroSeleccionado = libros[id];
+
     let url = "controller/controllerCookie.php";
     data = {'libro':libroSeleccionado}
-    console.log(libroSeleccionado)
 
     fetch(url,{
         method: 'POST',
@@ -226,8 +225,6 @@ function cambiarPagina(id) {
     }).catch(error=>console.error('Error status:',error))
 }
 
-
-
 function checkboxColor() {
     var color = $(this).next().css('color');
       if (color == 'rgb(177, 177, 177)') {
@@ -237,7 +234,6 @@ function checkboxColor() {
         $(this).next().removeClass('grey');
       }
 }
-
 
 
 let sliderOne = document.getElementById("slider-1");

@@ -84,7 +84,21 @@ class libroModel extends libroClass {
         $this->CloseConnect();
         return $titulo;
     }
+    public function addLibro()
+    {
+        $this->OpenConnect(); 
 
+        $sql="INSERT INTO `libro` (`idUsuario`, `titulo`, `autor`, `foto`, `formato`, `sinopsis`, `idioma`, `aprobado`) VALUES ( '".$this->getIdUsuario()."', '".$this->getTitulo()."', '".$this->getAutor()."', '".$this->getFoto()."', '".$this->getFormato()."', '".$this->getSinopsis()."', '".$this->getIdioma()."','".$this->getAprobado()."');";
+        $this->link->query($sql);
+
+        if ($this->link->affected_rows >= 1){
+            return true;
+        }else{
+            return false;
+        }
+        
+        $this->CloseConnect();
+    }
     public function findLibrosByIdUsuario() {
         $this->OpenConnect();
         $idUsuario = $this->getIdUsuario();

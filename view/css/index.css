@@ -15,6 +15,7 @@
 .libro {
     display: block;
     width: 25%;
+    height: 60vh;
     background-color: white;
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -441,4 +442,49 @@ input[type="checkbox"]:checked + .check-box::before, .check-box.checked::before 
     height: 55px;
     z-index: 1;
     width: 100%;
+}
+
+#footer {
+    margin-left: 25vw;
+    width: 75vw;
+}
+
+@media screen and (max-width: 800px) {
+    #filtroLibros {
+        position: inherit;
+        width: 100vw;
+        height: fit-content;
+    }
+    #listaLibros {
+        margin-left: 0;
+        width: 100vw;
+        height: fit-content;
+        justify-content: space-between;
+    }
+    .libro {
+        width: 45%;
+    }
+    .libro h2 {
+        font-size: large;
+    }
+    #footer {
+        width: 100vw;
+        margin-left: 0;
+    }
+    #footer footer {
+        flex-direction: column;
+        gap: 2%;
+    }
+    #footer footer p {
+        width: 100%;
+    }
+    #footer .footerLinea {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .libro {
+        width: 95%;
+    }
 }

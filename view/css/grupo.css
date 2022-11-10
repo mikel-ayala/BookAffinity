@@ -10,12 +10,14 @@ body {
 #grupos {
     display: flex;
     column-gap: 1%;
+    align-items: center;
     margin-top: 8vh;
     height: 6vh;
     padding: 0.5% 3%;
     background-color: rgb(252, 252, 252);
     border: 1px solid rgba(168, 168, 168, 0.496);
     box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+    overflow-x: scroll;
 }
 
 button {
@@ -252,4 +254,56 @@ button.active {
     width: 30px;
     height: 30px;
     padding: 3px 8.5px;
+}
+
+@media screen and (max-width: 800px) {
+    #grupos button {
+        font-size: 10px;
+        padding: 0 17px;
+        height: 50%;
+    }
+    .alumnoContainer {
+        width: 98%;
+    }
+    .registro .sinopsis {
+        width: 55%;
+    }
+    .control {
+        flex-direction: column;
+        width: fit-content;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .alumno img {
+        width: 50px;
+        height: 50px;
+    }
+    .control {
+        flex-direction: row;
+        width: fit-content;
+    }
+    .registros .registro {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 2%;
+        height: fit-content;
+    }
+    .registro img {
+        width: 20%;
+
+    }
+    .registro .info {
+        width: 70%;
+        align-self: flex-start;
+    }
+    .registro .sinopsis {
+        width: 100%;
+        height: 100px;
+        overflow-y: scroll;
+    }
+    .registro .control {
+        flex-direction: row;
+    }
 }

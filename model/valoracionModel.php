@@ -105,10 +105,9 @@ class valoracionModel extends valoracionClass {
 
         $sql = '';
         if($this->getTituloSolicitado() != '')
-            $sql = "INSERT INTO `valoracion`(`idUsuario`, `idLibro`, `valoracion`, `comentario`, `idioma`, `edad`, `tituloSolicitado`) VALUES ('" . $this->getIdUsuario() . "','" . $this->getIdLibro() . "','" . $this->getValoracion() . "','" . $this->getComentario() . "','" . $this->getIdioma() . "','" . $this->getEdad() . "','" . $this->getTituloSolicitado() . "')";
+            $sql = "INSERT INTO `valoracion`(`idUsuario`, `idLibro`, `valoracion`, `comentario`, `idioma`, `edad`, `tituloSolicitado`, `aprobado`) VALUES ('" . $this->getIdUsuario() . "','" . $this->getIdLibro() . "','" . $this->getValoracion() . "','" . $this->getComentario() . "','" . $this->getIdioma() . "','" . $this->getEdad() . "','" . $this->getTituloSolicitado() . "','" . $this->getAprobado() . "')";
         else
-            $sql = "INSERT INTO `valoracion`(`idUsuario`, `idLibro`, `valoracion`, `comentario`, `idioma`, `edad`) VALUES ('" . $this->getIdUsuario() . "','" . $this->getIdLibro() . "','" . $this->getValoracion() . "','" . $this->getComentario() . "','" . $this->getIdioma() . "','" . $this->getEdad() . "')";
-        
+            $sql = "INSERT INTO `valoracion`(`idUsuario`, `idLibro`, `valoracion`, `comentario`, `idioma`, `edad`, `aprobado`) VALUES ('" . $this->getIdUsuario() . "','" . $this->getIdLibro() . "','" . $this->getValoracion() . "','" . $this->getComentario() . "','" . $this->getIdioma() . "','" . $this->getEdad() . "','" . $this->getAprobado() . "')";
         $this->link->query($sql);
         if ($this->link->affected_rows > 0) {         
             return true;

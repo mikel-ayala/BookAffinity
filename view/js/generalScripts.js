@@ -11,6 +11,8 @@ function load() {
         $("#addLibroModal").load("./view/html/addLibro.html", () => {
             $('#cerrarModal').on('click', cerrarModal);
             $("#confirmarLibroModal").on("click", validar);
+            $('#fotoModal').on('change', verifyBookPhoto);
+
         });
         $('#addLibro').on('click', abrirModal);
     });
@@ -58,9 +60,6 @@ function bookSearcher(event) {
         $('.numeroLibros').text(index);
     }
 }
-function filtro(element) {
-    
-}
 
 function goToMain(event) {
     preventClick(event)
@@ -103,6 +102,28 @@ function loggedVerify() {
         $('#foto').attr('src', result.foto);
     });
 }
+var savedFileBase64Book='';
+var nombreFoto='';
+
+function verifyBookPhoto(event) {
+	preventClick(event);
+
+	var file= this.files[0];
+	var reader  = new FileReader();
+
+	nombreFoto = file.name;
+	filesize= file.size;
+
+	if((file.size/ 1024/1024) > 512 ){
+		alert("Argazkia gehiegi okupatzen du");
+		this.value = "";
+	} else{
+		reader.onloadend = function () {
+			savedFileBase64Book = reader.result;   
+		}
+		if (file) {reader.readAsDataURL(file)} 
+	}
+}
 
 function checkRol() {
     if (localStorage.getItem('rol') != "admin" && localStorage.getItem('rol') != "profesor") {
@@ -131,54 +152,39 @@ function validar() {
     let libro = {
         'titulo':$('#tituloModal').val(),
         'autor':$('#autorModal').val(),
-        'foto':$('#fotoModal').prop("files")[0],
+        'foto':nombreFoto,
         'formato':$('#formatoModal').val(),
         'sinopsis':$('#sinopsisModal').val(),
-        'idioma':$('#idiomaModal').val()
+        'idioma':$('#idiomaModal').val(),
+        'savedFileBase64Book':savedFileBase64Book
     }
 
     if (libro['titulo'] && libro['autor'] && libro['foto'] && libro['formato'] && libro['sinopsis'] && libro['idioma']) {
-        $('#msgError').html('');
-        $('#tituloModal').val('');
-        $('#autorModal').val('');
-        $('#fotoModal').val('');
-        $('#formatoModal').val('');
-        $('#sinopsisModal').val('');
-        $('#idiomaModal').val('Euskera');
 
-        let formData = new FormData();
-
-        formData.append('file', $('#fotoModal').prop("files")[0]);
-        //formData.append('libro', libro);
-
-        // url = "controller/controllerAddLibro.php";
-
-        // fetch(url, {
-        //     method: 'POST', 
-        //     data: formData,
-        //     headers:{'Content-Type': false}  
-        // })
-        // .then(res => res.json()).then(result => {
-        //     cerrarModal();
-        // })
-        // .catch(error => console.error('Error status:', error));
-
-        $.ajax({
-            url: 'controller/controllerAddLibro.php', // <-- point to server-side PHP script 
-            dataType: 'text',  // <-- what to expect back from the PHP script, if anything
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: formData,                         
-            type: 'post',
-            success: function(php_script_response){
-                alert(php_script_response); // <-- display response from the PHP script, if any
-            }
-         });
-
+        defaultValues()
+        url = "controller/controllerAddLibro.php";
+        fetch(url, {
+            method: 'POST', 
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify(libro), 
+            })
+        .then(res => res.json()).then(result => {
+            $('#cerrarModal').click();
+        })
+        .catch(error => console.error('Error status:', error));
+    
     } else {
         $('#msgError').html('<i class="fa-solid fa-triangle-exclamation"></i> Datu guztiak bete');
     }
+}
+function defaultValues() {
+    $('#msgError').html('');
+    $('#tituloModal').val('');
+    $('#autorModal').val('');
+    $('#fotoModal').val('');
+    $('#formatoModal').val('');
+    $('#sinopsisModal').val('');
+    $('#idiomaModal').val('Euskera');
 }
 
 function delay(time) {

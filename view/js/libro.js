@@ -1,13 +1,12 @@
 $(document).ready(load)
 
 function load() {
-    mostrarInfoLibro(), setTimeout( mostrarValoraciones, 10);
+    mostrarInfoLibro(), setTimeout(mostrarValoraciones, 10);
     $('#navegar').on('click', scrollear);
     $('#gehitu').on('click', abrirModal);
     $('.closeModal').on('click', cerrarModal);
     $('#valorar').on('click', crearValoracion);
     $('.estrella').on('click', notaStars);
-    $('#valorar').on('click', crearValoracion);
     $('#responder').on('click', crearRespuesta);
 }
 
@@ -51,7 +50,7 @@ function mostrarInfoLibro() {
         };
         $("#formato").text(libroSeleccionado['formato'].toUpperCase());
         $("#sinopsis").text(libroSeleccionado['sinopsis']);
-        $(".numeroLectores").text(libroSeleccionado['numeroLectores'] + " Iriztiak");
+        $(".numeroLectores").text(libroSeleccionado['numeroLectores']);
         $("#edadMedia").text(libroSeleccionado['edadMedia']);
         $("#tituloIdiomas").text(libroSeleccionado['tituloIdiomas']);
         

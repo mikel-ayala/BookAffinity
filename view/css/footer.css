@@ -1,7 +1,6 @@
 footer {
-    width: 75vw;
+    width: 100%;
     height: fit-content;
-    margin-left: 25vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

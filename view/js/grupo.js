@@ -94,7 +94,6 @@ function mostrarProfesoresPendientes() {
                                 '<img src="' + pendientes[i]['foto'] + '" alt="">' +
                                 '<article class="info">' +
                                     '<h3 class="nombre">' + pendientes[i]['nombre'] + '</h3>' +
-                                    '<h4 class="apellidos">' + pendientes[i]['apellidos'] + '</h4>' +
                                     '<h4 class="usuario">' + pendientes[i]['usuario'] + '</h4>' +
                                     '<h5 class="fechaNacimiento">' + pendientes[i]['fechaNacimiento'] + '</h5>' +
                                 '</article>' +
@@ -138,7 +137,6 @@ function mostrarAlumnosPendientes() {
                                     '<img src="' + pendientes[i]['foto'] + '" alt="">' +
                                     '<article class="info">' +
                                         '<h3 class="nombre">' + pendientes[i]['nombre'] + '</h3>' +
-                                        '<h4 class="apellidos">' + pendientes[i]['apellidos'] + '</h4>' +
                                         '<h4 class="usuario">' + pendientes[i]['usuario'] + '</h4>' +
                                         '<h5 class="fechaNacimiento">' + pendientes[i]['fechaNacimiento'] + '</h5>' +
                                     '</article>' +
@@ -182,7 +180,6 @@ function mostrarProfesores() {
                             '<img src="' + profesores[i]['foto'] + '" alt="">' +
                             '<article class="info">' +
                                 '<h3 class="nombre">' + profesores[i]['nombre'] + '</h3>' +
-                                '<h4 class="apellidos">' + profesores[i]['apellidos'] + '</h4>' +
                                 '<h4 class="usuario">' + profesores[i]['usuario'] + '</h4>' +
                                 '<h5 class="fechaNacimiento">' + profesores[i]['fechaNacimiento'] + '</h5>' +
                             '</article>' +
@@ -233,7 +230,6 @@ function mostrarUsuariosGrupo(grupo) {
                                 '<img src="' + usuarios[i]['foto'] + '" alt="">' +
                                 '<article class="info">' +
                                     '<h3 class="nombre">' + usuarios[i]['nombre'] + '</h3>' +
-                                    '<h4 class="apellidos">' + usuarios[i]['apellidos'] + '</h4>' +
                                     '<h4 class="usuario">' + usuarios[i]['usuario'] + '</h4>' +
                                     '<h5 class="fechaNacimiento">' + usuarios[i]['fechaNacimiento'] + '</h5>' +
                                 '</article>' +
