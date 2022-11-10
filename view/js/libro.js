@@ -265,7 +265,7 @@ function crearRespuesta(event) {
     preventClick(event);
 
     if($('#respuestaVal').val().trim() != '') {
-        if($('#respuestaVal').val().trim().length < 121){
+        if($('#respuestaVal').val().trim().length < 141){
             console.log("Entro");
         document.getElementById("mensajeErrorRespuesta").style.display = "none";
 
@@ -281,12 +281,18 @@ function crearRespuesta(event) {
             })
             .catch(error => console.error('Error status:', error));
         } else {
+            document.getElementById("mensajeErrorRespuestaP").style.display = "none";
             $("#mensajeErrorRespuesta").text("Erantzuna luzeegia da");
-            document.getElementById("mensajeErrorRespuesta").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("mensajeErrorRespuestaP").style.display = "block";
+            }, 1);
         }
     } else {
+        document.getElementById("mensajeErrorRespuestaP").style.display = "none";
         $("#mensajeErrorRespuesta").text("Erantzuna sartu");
-        document.getElementById("mensajeErrorRespuesta").style.display = "block";
+        setTimeout(() => {
+            document.getElementById("mensajeErrorRespuestaP").style.display = "block";
+        }, 1);
     }
 }
 

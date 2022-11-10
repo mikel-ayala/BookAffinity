@@ -289,13 +289,15 @@ button {
 }
 
 #mensajeErrorComentarioP {
+    display: none;
+    margin-bottom: 10px;
     width: 80%;
 }
 
 #mensajeErrorComentario {
-    display: none;
-    margin-bottom: 10px;
     color: red;
+    animation-name: animationBigSmall;
+    animation-duration: 0.25s;
 }
 
 .modalContainer #estrellas {
@@ -368,11 +370,17 @@ button {
 }
 
 #mensajeErrorRespuestaP {
+    display: none;
+    margin-bottom: 10px;
     width: 80%;
 }
 
 #mensajeErrorRespuesta {
-    display: none;
-    margin-bottom: 10px;
     color: red;
+    animation-name: animationBigSmall;
+    animation-duration: 0.25s;
+}
+
+@keyframes animationBigSmall {
+    50%  {color:red; font-size: 1.25em}
 }
