@@ -151,10 +151,115 @@
 
 #reviewPerfil p {
     width: 100%;
-    height: 40%;
 }
 
 #reviewPerfil * {
     padding-top: 0.3%;
     padding-bottom: 0.3%;
+}
+
+.comentario {
+    max-height: 25vh;
+    overflow-y: scroll;
+}
+
+@media screen and (max-width: 800px) {
+    #containerFichaPersona img {
+        width: 38%;
+        height: 60%;
+    }
+
+    #fichaPersona {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        grid-template-rows: 60%;
+        width: 100%;
+        height: 94%;
+        padding-top: 15px;
+    }
+
+    #containerFichaPersona img {
+        width: 100%;
+        height: 100%;
+    }
+
+    #persona {
+        width: 100%;
+    }
+
+    .buttonsPerfil {
+        width: 50%;
+        margin-left: 2%;
+        margin-top: 8%;
+        margin-right: 2%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #fichaPersona {
+        display: block;
+    }
+
+    #containerFichaPersona {
+        text-align: center;
+        scroll-snap-align: unset;
+        height: unset;
+    }
+
+    #containerFichaPersona img {
+        width: auto;
+    }
+
+    #persona {
+        text-align: center;
+        width: auto;
+    }
+
+    #persona * {
+        width: unset;
+    }
+
+    #nomUs {
+        width: unset;
+    }
+
+    .buttonsPerfil {
+        margin-top: 20px;
+        flex-direction: unset;
+        width: 100%;
+    }
+
+    .botonCerrarSesion {
+        width: 20%;
+        margin-right: 3%;
+        margin-left: auto;
+    }
+
+    .botonEditarPerfil {
+        width: 20%;
+        margin-right: auto;
+        margin-left: 3%;
+        margin-top: 0px !important;
+    }
+
+    #navegar {
+        display: none;
+    }
+
+
+
+    #containerValoraciones {
+        text-align: center;
+        scroll-snap-align: unset;
+        height: unset;
+    }
+
+    #headerValoraciones {
+        margin: auto;
+    }
+
+    .comentario {
+        max-height: 250px;
+        overflow-y: scroll;
+    }
 }
