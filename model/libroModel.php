@@ -127,6 +127,23 @@ class libroModel extends libroClass {
         return false;
     }
 
+    public function updateMediaLibro() {
+        $this->OpenConnect();
+        $id = $this->getIdLibro();
+        
+        $sql = "UPDATE libro SET `valoracion` = (SELECT IFNULL(ROUND(AVG(valoracion), 0), 0) FROM valoracion WHERE idLibro=$id AND aprobado=1), `numeroLectores` = (SELECT COUNT(idLibro) FROM valoracion WHERE idLibro=$id AND aprobado=1), `edadMedia` = (SELECT IFNULL(ROUND(AVG(edad), 0), 0) FROM valoracion WHERE idLibro=$id AND aprobado=1) WHERE idLibro=$id";
+        
+        $this->link->query($sql);
+        if ($this->link->affected_rows > 0) {     
+            return true;
+        }else{ 
+            error_log($this->link->error);
+            echo $this->link->error;
+        }
+        $this->CloseConnect(); 
+        return false;
+    }
+
     public function deleteLibro() {
         $this->OpenConnect();
         

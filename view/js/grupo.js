@@ -310,7 +310,7 @@ function mostrarActividadPendiente(idUsuario) {
                             '</article>' +
                                 '<p class="sinopsis">' + valoraciones[i]['comentario'] + '</p>' +
                             '<article class="control">' +
-                                '<button id="valoracion' + valoraciones[i]['idValoracion'] + '" class="aceptar"><i class="fa-solid fa-check"></i></button>' +
+                                '<button value="' + valoraciones[i]['idLibro'] + '" id="valoracion' + valoraciones[i]['idValoracion'] + '" class="aceptar"><i class="fa-solid fa-check"></i></button>' +
                                 '<button id="valoracion' + valoraciones[i]['idValoracion'] + '" class="rechazar"><i class="fa-solid fa-xmark"></i></button>' +
                             '</article>' +
                         '</article>';
@@ -391,7 +391,7 @@ function aceptarPendiente(event) {
         aceptado = $(this).parent().parent();
     } else if (this.id.includes("valoracion")) {
         url = "controller/controllerAceptarValoracion.php";
-        data = {'idValoracion':this.id.replace("valoracion", "")};
+        data = {'idValoracion':this.id.replace("valoracion", ""), 'idLibro':this.value};
         aceptado = $(this).parent().parent();
     }
 
