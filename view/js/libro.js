@@ -51,6 +51,7 @@ function mostrarInfoLibro() {
         $("#formato").text(libroSeleccionado['formato'].toUpperCase());
         $("#sinopsis").text(libroSeleccionado['sinopsis']);
         $(".numeroLectores").text(libroSeleccionado['numeroLectores']);
+        $(".reviewLectores").text(libroSeleccionado['numeroLectores'] + " Iritzi");
         $("#edadMedia").text(libroSeleccionado['edadMedia']);
         $("#tituloIdiomas").text(libroSeleccionado['tituloIdiomas']);
         
